@@ -11,7 +11,6 @@ const edit = (event: Event) => {
 
 <template>
   <main class="text-editor-container">
-    <h1>Markdown Editor</h1>
     <div class="textarea-container">
       <textarea @input="edit"></textarea>
     </div>
@@ -21,30 +20,33 @@ const edit = (event: Event) => {
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .text-editor-container {
-    background-color: rgb(188, 122, 122);
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 1.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 49vh;
-
+    height: 20vh;
+    
     .textarea-container {
-      background-color: rgb(92, 163, 213);
       height: 100%;
       width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       textarea {
-        background-color: white;
+        border-radius: 1rem;
+        background-color: rgb(129, 188, 122);
         width: 100%;
         height: 100%;
+        padding: 1rem;
         font-size: 1rem;
         resize: none;
         border: none;
         outline: none;
-        p {
-          background-color: red;
-        }
       }
     }
   }

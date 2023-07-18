@@ -16,7 +16,6 @@ import previewText from './components/previewText/PreviewText.vue';
 @media screen and (max-width: 700px) {
   .container {
     display: flex;
-    background-color: red;
     flex-direction: column;
   }
 }

@@ -12,7 +12,6 @@ const compiledMarkdown = computed(() => {
 
 <template>
   <main class="preview-text-container">
-    <h1>Markdown Visualizador</h1>
     <div class="marked-view">
       <div class="marked" v-html="compiledMarkdown"></div>
     </div>
@@ -22,18 +21,17 @@ const compiledMarkdown = computed(() => {
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .preview-text-container {
-    background-color: blue;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 100vh;
 
     .marked-view {
-      background-color: rgb(92, 163, 213);
+      background-color: rgb(241, 174, 189);
       height: 100%;
-      width: 90%;
+      width: 100%;
       overflow: auto;
 
       .marked {
