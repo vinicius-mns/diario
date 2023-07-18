@@ -1,18 +1,26 @@
 <script setup lang="ts">
 import { useMarkdownStore } from '../../stores/markdown';
 import { marked } from 'marked';
-import { computed } from 'vue';
+import { computed, onUpdated, ref } from 'vue';
 
 const markdownStore = useMarkdownStore()
+const markedViewRef = ref<HTMLElement>();
 
 const compiledMarkdown = computed(() => {
   return marked(markdownStore.getValue(), { mangle: false, headerIds: false });
 });
+
+onUpdated(() => {
+  if (markedViewRef.value) {
+    markedViewRef.value.scrollTop = markedViewRef.value.scrollHeight;
+  }
+})
+
 </script>
 
 <template>
   <main class="preview-text-container">
-    <div class="marked-view">
+    <div class="marked-view" ref="markedViewRef">
       <div class="marked" v-html="compiledMarkdown"></div>
     </div>
   </main>
