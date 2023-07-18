@@ -6,6 +6,10 @@ import { computed, onUpdated, ref } from 'vue';
 const markdownStore = useMarkdownStore()
 const markedViewRef = ref<HTMLElement>();
 
+marked.setOptions({
+  breaks: true,
+})
+
 const compiledMarkdown = computed(() => {
   return marked(markdownStore.getValue(), { mangle: false, headerIds: false });
 });
