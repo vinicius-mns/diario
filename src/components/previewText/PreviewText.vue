@@ -35,7 +35,7 @@ onUpdated(() => {
   .preview-text-container {
     .marked-view {
       position: fixed;
-      top: 0;
+      bottom: calc(20vh + 10px + 2.4rem);
       margin-top: 8px;
       height: 40vh;
       width: 98%;
