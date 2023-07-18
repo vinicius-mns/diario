@@ -33,17 +33,13 @@ onUpdated(() => {
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .preview-text-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 40vh;
-
     .marked-view {
-      margin-top: 6px;
-      height: 100%;
-      width: 100%;
+      position: fixed;
+      top: 0;
+      margin-top: 8px;
+      height: 40vh;
+      width: 98%;
+      margin-left: 1%;
       overflow: auto;
 
       .marked {
