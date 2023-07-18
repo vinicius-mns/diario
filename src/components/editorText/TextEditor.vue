@@ -20,7 +20,7 @@ const edit = (event: Event) => {
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .text-editor-container {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     margin-bottom: 1.5rem;
     width: 100%;
