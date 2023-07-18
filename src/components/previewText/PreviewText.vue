@@ -34,10 +34,10 @@ onUpdated(() => {
 @media screen and (max-width: 700px) {
   .preview-text-container {
     .marked-view {
-      position: fixed;
+      position: absolute;
       bottom: calc(20vh + 10px + 2.4rem);
       margin-top: 8px;
-      height: 40vh;
+      height: 30vh;
       width: 98%;
       margin-left: 1%;
       overflow: auto;
