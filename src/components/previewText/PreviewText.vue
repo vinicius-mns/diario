@@ -34,10 +34,10 @@ onUpdated(() => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 40vh;
 
     .marked-view {
-      background-color: rgb(241, 174, 189);
+      margin-top: 6px;
       height: 100%;
       width: 100%;
       overflow: auto;
