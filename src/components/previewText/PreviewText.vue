@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useMarkdownStore } from '../../stores/markdown';
+import { useToggleComponents } from '../../stores/toggleComponents';
 import { marked } from 'marked';
 import { computed, onUpdated, ref } from 'vue';
 
+const toggleComponents = useToggleComponents()
 const markdownStore = useMarkdownStore()
 const markedViewRef = ref<HTMLElement>();
 
@@ -19,34 +21,58 @@ onUpdated(() => {
     markedViewRef.value.scrollTop = markedViewRef.value.scrollHeight;
   }
 })
-
 </script>
 
 <template>
-  <main class="preview-text-container">
-    <div class="marked-view" ref="markedViewRef">
-      <div class="marked" v-html="compiledMarkdown"></div>
-    </div>
-  </main>
+  <div 
+    class="marked-view"
+    ref="markedViewRef"
+    v-if="toggleComponents.previewText"
+  >
+    <div 
+      class="marked"
+      v-html="compiledMarkdown"
+    ></div>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
-  .preview-text-container {
-    .marked-view {
-      position: absolute;
-      bottom: calc(20vh + 10px + 2.4rem);
-      margin-top: 8px;
-      height: 30vh;
-      width: 98%;
-      margin-left: 1%;
-      overflow: auto;
+  .marked-view {
+    // posicionamento
+    position: fixed;
+    bottom: calc(20vh + 1rem + 0.5rem);
 
-      .marked {
-        width: 100%;
-        height: 100%;
-        word-wrap: break-word;
-      }
+    // estilo
+    background-color: white;
+    border-radius: 1rem;
+    
+    // tamanho
+    width: 96%;
+    height: 37vh;
+    margin-left: 2%;
+    box-sizing: border-box;
+    padding: 1rem;
+
+    // scroll
+    overflow: auto;
+
+    .marked {
+      width: 100%;
+      height: 100%;
+      word-wrap: break-word;
+    }
+
+    //animacao
+    opacity: 0;
+    transform: translateY(30%);
+    animation: on-mount 0.5s forwards;
+  }
+
+  @keyframes on-mount {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
