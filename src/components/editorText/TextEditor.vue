@@ -33,7 +33,7 @@ const placeholder = `# Dia de hoje
       // posicionamento
       position: fixed;
       bottom: 0;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
 
       // estilo
       border-radius: 2rem;
