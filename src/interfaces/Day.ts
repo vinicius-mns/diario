@@ -1,4 +1,4 @@
 export interface IDay {
-  date: string,
+  date: Date,
   contente: string,
 }
