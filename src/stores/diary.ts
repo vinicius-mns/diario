@@ -40,8 +40,20 @@ export const useDiaryStore = defineStore(diaryStore, () => {
     todayTime > lastDayTime ? createDay(content) : updateDay(content)
   }
 
+  const DeleteDay = (date: Date) => {
+    const index = state.findIndex(
+      (diary) => new Date(diary.date).getTime() === new Date(date).getTime()
+    )
+
+    if( index !== -1 ){
+      state.splice(index, 1)
+      localStorageDiary.update(state)
+    }
+  }
+
   return {
     getListOfDays,
     createOrUpdate,
+    DeleteDay
   }
 })
