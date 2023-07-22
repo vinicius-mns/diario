@@ -20,6 +20,13 @@ export const useDiaryStore = defineStore(diaryStore, () => {
     localStorageDiary.update(state)
   }
 
+  const updateDay = (content: string) => {
+    const today = state.pop() as unknown as IDay
+    today.content = content
+    state.push(today)
+    localStorageDiary.update(state)
+  }
+
   return {
     getListOfDays,
   }
