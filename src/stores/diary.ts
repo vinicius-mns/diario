@@ -27,7 +27,21 @@ export const useDiaryStore = defineStore(diaryStore, () => {
     localStorageDiary.update(state)
   }
 
+  const createOrUpdate = (content: string) => {
+    const newDate = HandleDate.create()
+    const lastDayOfDiary = new Date( state[ state.length - 1 ].date )
+
+    newDate.setHours(0, 0, 0, 0)
+    lastDayOfDiary.setHours(0, 0, 0, 0)
+
+    const todayTime = newDate.getTime()
+    const lastDayTime = lastDayOfDiary.getTime()
+  
+    todayTime > lastDayTime ? createDay(content) : updateDay(content)
+  }
+
   return {
     getListOfDays,
+    createOrUpdate,
   }
 })
