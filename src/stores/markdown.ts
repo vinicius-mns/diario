@@ -10,7 +10,6 @@ export const useMarkdownStore = defineStore('markdownStore', () => {
   }
 
   const editValue = (newValue: string) => {
-    console.log('text', text.value)
     text.value = newValue
   }
 
