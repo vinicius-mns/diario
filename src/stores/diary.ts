@@ -1,4 +1,4 @@
-import { HandleLocalStorage } from '@/utils'
+import { HandleDate, HandleLocalStorage } from '@/utils'
 import { type IDay } from '@/interfaces'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
@@ -14,6 +14,11 @@ export const useDiaryStore = defineStore(diaryStore, () => {
   const state = reactive(localStorageDiary.read)
 
   const getListOfDays = () => state
+
+  const createDay = (content: string) => {
+    state.push({content, date: HandleDate.create()})
+    localStorageDiary.update(state)
+  }
 
   return {
     getListOfDays,
