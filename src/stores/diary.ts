@@ -12,4 +12,10 @@ export const useDiaryStore = defineStore(diaryStore, () => {
   const localStorageDiary = new HandleLocalStorage(diaryStore, initState)
   
   const state = reactive(localStorageDiary.read)
+
+  const getListOfDays = () => state
+
+  return {
+    getListOfDays,
+  }
 })
