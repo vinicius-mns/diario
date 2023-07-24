@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useDiaryStore } from '@/stores/diary';
+import { HandleDate } from '@/utils';
 import { onMounted, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 
@@ -17,7 +18,7 @@ onMounted(() => {
   
   if(findDay) {
     state.content = findDay.content
-    state.date = findDay.date
+    state.date = HandleDate.changeToBrazilianDate(new Date(findDay.date))
   }
 })
 </script>
