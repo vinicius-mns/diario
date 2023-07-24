@@ -51,9 +51,30 @@ export const useDiaryStore = defineStore(diaryStore, () => {
     }
   }
 
+  const getDay = (id: number) => {
+    return state.find(({date}) => new Date(date).getTime() === id)
+  }
+
+  const getLastToday = () => {
+    const newDate = HandleDate.create()
+    const lastDayOfDiary = new Date( state[ state.length - 1 ].date )
+
+    newDate.setHours(0, 0, 0, 0)
+    lastDayOfDiary.setHours(0, 0, 0, 0)
+
+    const todayTime = newDate.getTime()
+    const lastDayTime = lastDayOfDiary.getTime()
+  
+    
+    if(todayTime !== lastDayTime)return null
+    return state[state.length - 1]
+  }
+
   return {
     getListOfDays,
     createOrUpdate,
-    DeleteDay
+    DeleteDay,
+    getDay,
+    getLastToday,
   }
 })
