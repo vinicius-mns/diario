@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import DiaryPage from '@/views/DiaryPage.vue'
+import DiaryPageId from '@/views/DiaryPageId.vue'
 import NotFound from '@/views/NotFound.vue'
 
 const router = createRouter({
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/diary',
       name: 'diary',
       component: DiaryPage
+    },
+    {
+      path: '/diary/:id',
+      name: 'day',
+      component: DiaryPageId,
     },
     {
       path: '/notFound',
