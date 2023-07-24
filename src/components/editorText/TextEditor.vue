@@ -19,11 +19,25 @@ const placeholder = `# Dia de hoje
 </script>
 
 <template>
-  <main class="text-editor-container">
-    <textarea @input="edit" :placeholder="placeholder"
-    @focus="toggleComponents.togglePreviewText" @blur="toggleComponents.togglePreviewText"
+  <div class="text-editor-container">
+    <div 
+      class="marked-view"
+      v-if="toggleComponents.previewText"
+    >
+      <div
+        class="marked"
+        v-html="markdown.render(markdownStore.state)"
+      ></div>
+    </div>
+
+    <textarea
+      v-model="markdownStore.state"
+      placeholder="Digite aqui"
+      @keydown.enter="createNewDate"
+      @focus="toggleComponents.togglePreviewText"
+      @blur="toggleComponents.togglePreviewText"
     ></textarea>
-  </main>
+  </div>
 </template>
 
 <style scoped lang="scss">
