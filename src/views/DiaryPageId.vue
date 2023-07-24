@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { reactive } from 'vue';
+
+const state = reactive({ content: '', date: '' })
 </script>
 
 <template>
   <div class="render-day">
+    <div>{{ state.date }}</div>
+    <div>{{ state.content }}</div>
     <RouterLink to="/diary"><button>Voltar</button></RouterLink>
   </div>
 </template>
