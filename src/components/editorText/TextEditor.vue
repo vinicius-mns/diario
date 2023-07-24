@@ -1,25 +1,34 @@
 <script setup lang="ts">
-import { useMarkdownStore } from '../../stores/markdown';
-import { useToggleComponents } from '../../stores/toggleComponents';
+import { HandleMarkdown } from '@/utils';
+import { useDiaryStore } from '@/stores/diary';
+import { useMarkdownStore } from '@/stores/markdown';
+import { useToggleComponents } from '@/stores/toggleComponents';
+import { onMounted, onUpdated, ref } from 'vue';
+
+const markedView = ref<HTMLElement>()
 
 const markdownStore = useMarkdownStore()
 const toggleComponents = useToggleComponents()
+const diary = useDiaryStore()
 
-const edit = (event: Event) => {
-  const { value } = event.target as HTMLTextAreaElement
-  markdownStore.editValue(value)
+const markdown = new HandleMarkdown()
+
+const createNewDate = () => {
+  const content = markdownStore.state
+  diary.createOrUpdate(content)
 }
 
+onMounted(() => {
+  const today = diary.getLastToday()
+  if(today) markdownStore.state = today.content
+})
 
-import { onUpdated, ref } from 'vue';
 
 const scrollToEnd = () => {
   if(markedView.value){
     markedView.value.scrollTop = markedView.value.scrollHeight
   }
 }
-
-const markedView = ref<HTMLElement>()
 
 onUpdated(() => scrollToEnd())
 </script>
@@ -50,36 +59,82 @@ onUpdated(() => scrollToEnd())
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .text-editor-container {
-    textarea {
-      // posicionamento
-      position: fixed;
-      bottom: 0;
-      margin-bottom: 0.5rem;
+    // posicionamento
+    width: 100%;
+    background-color: red;
+    position: fixed;
+    bottom: 0;
 
-      // estilo
-      border-radius: 2rem;
-      background-color: rgb(129, 188, 122);
+    // display
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-      // tamanho
-      width: 96%;
-      height: 6vh;
-      left: 2%;
-      font-size: 1rem;
-      box-sizing: border-box;
-      padding: 1rem;
+  .marked-view {
+    // posicionamento
+    margin-bottom: 0.5rem;
 
-      // transicao quando :focus acontecer
-      transition: 0.5s all;
+    // estilo
+    background-color: white;
+    border-radius: 1rem;
+    
+    // tamanho
+    width: 96%;
+    height: 37vh;
+    box-sizing: border-box;
+    padding: 1rem;
 
-      // remove valores padros do textarea
-      resize: none;
-      border: none;
-      outline: none;
+    // scroll
+    overflow: auto;
+
+    .marked {
+      width: 100%;
+      height: 100%;
+      word-wrap: break-word;
     }
 
-    textarea:focus {
-      border-radius: 1rem;
-      height: 20vh;
+    //animacao
+    opacity: 0;
+    transform: translateY(30%);
+    animation: on-mount 0.5s forwards;
+  }
+  
+  textarea {
+    // posicionamento
+    margin-bottom: 0.5rem;
+
+    // estilo
+    border-radius: 2rem;
+    background-color: rgb(129, 188, 122);
+
+    // tamanho
+    width: 96%;
+    height: 6vh;
+    left: 2%;
+    font-size: 1rem;
+    box-sizing: border-box;
+    padding: 1rem;
+
+    // transicao quando :focus acontecer
+    transition: 0.5s all;
+
+    // remove valores padros do textarea
+    resize: none;
+    border: none;
+    outline: none;
+  }
+
+  textarea:focus {
+    border-radius: 1rem;
+    height: 20vh;
+  }
+}
+
+  @keyframes on-mount {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }
