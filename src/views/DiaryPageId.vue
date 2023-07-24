@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { useDiaryStore } from '@/stores/diary';
+import { reactive } from 'vue'
 
 const state = reactive({ content: '', date: '' })
+
+const diary = useDiaryStore()
 </script>
 
 <template>
