@@ -1,4 +1,7 @@
 <script setup lang="ts">
+
+import TopBarVue from '@/components/topBar/TopBar.vue'
+
 import { onMounted, onUpdated, ref } from 'vue'
 
 const diaryPage = ref<HTMLElement>()
@@ -15,6 +18,7 @@ onUpdated(scrollToEnd)
 
 <template>
   <div class="container">
+    <TopBarVue />
     <div class="diary-page" ref="diaryPage">
     </div>
   </div>
