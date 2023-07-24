@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <div class="app">
-    <RouterView />
+  <div class="not-found">
+    <h1>Pagina nao encontrada</h1>
   </div>
 </template>
 
