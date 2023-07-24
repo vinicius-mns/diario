@@ -13,7 +13,7 @@ const diary = useDiaryStore()
 
 const markdown = new HandleMarkdown()
 
-const createNewDate = () => {
+const createOrEditDay = () => {
   const content = markdownStore.state
   diary.createOrUpdate(content)
 }
@@ -49,7 +49,7 @@ onUpdated(() => scrollToEnd())
     <textarea
       v-model="markdownStore.state"
       placeholder="Digite aqui"
-      @keydown.enter="createNewDate"
+      @keydown.enter="createOrEditDay"
       @focus="toggleComponents.togglePreviewText"
       @blur="toggleComponents.togglePreviewText"
     ></textarea>
