@@ -1,28 +1,39 @@
 <script setup lang="ts">
-import { marked } from 'marked';
+import type { IDay } from '@/interfaces'
 
-marked.setOptions({
-  breaks: true,
-})
+import { useDiaryStore } from '@/stores/diary'
+import { HandleDate, HandleMarkdown } from '@/utils'
+import { useRouter } from 'vue-router';
 
-const props = defineProps<{content: string}>()
+const props = defineProps<IDay>()
 
-const markedV = marked(props.content, { mangle: false, headerIds: false });
+const diary = useDiaryStore()
+const router = useRouter()
+
+const markdown = new HandleMarkdown()
+
+const deleteDay = () => diary.DeleteDay(props.date)
+const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
 </script>
 
 <template>
-  <div class="day-card">
-    <div class="date"><p>19/07/23</p></div>
+  <button class="day-card" @click="openCard">
+    <div class="date">
+      <p>{{ HandleDate.changeToBrazilianDate(props.date) }}</p>
+      <p>{{ HandleDate.changeToBrazilianHour(props.date) }}</p>
+    </div>
     <div
       class="content"
-      v-html="markedV"
+      v-html="markdown.render(props.content)"
     ></div>
-  </div>
+    <button @click="deleteDay">Delete</button>
+  </button>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .day-card {
+    text-align: justify;
     width: 98%;
     max-height: 33vh;
     background-color: white;
