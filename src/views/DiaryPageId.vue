@@ -1,20 +1,24 @@
 <script setup lang="ts">
 import { useDiaryStore } from '@/stores/diary';
 import { onMounted, reactive } from 'vue'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const state = reactive({ content: '', date: '' })
 
 const diary = useDiaryStore()
 const route = useRoute()
+const router = useRouter()
 
 onMounted(() => {
   const { id } = route.params
+  const findDay = diary.getDay(Number(id))
 
-  const findDay = diary.getDay(Number(id)) 
-
-  state.content = findDay?.content
-  state.date = findDay?.date
+  if(!findDay) router.push('/notFound')
+  
+  if(findDay) {
+    state.content = findDay.content
+    state.date = findDay.date
+  }
 })
 </script>
 
