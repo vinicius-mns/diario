@@ -14,13 +14,15 @@ onUpdated(scrollToEnd)
 </script>
 
 <template>
-  <div class="diary-page" ref="diaryPage">
+  <div class="container">
+    <div class="diary-page" ref="diaryPage">
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
-  .diary-page {
+  .container {
     padding-top: 6vh;
     padding-bottom: 2vh;
     width: 100%;
