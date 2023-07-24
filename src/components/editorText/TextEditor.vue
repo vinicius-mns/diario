@@ -10,18 +10,25 @@ const edit = (event: Event) => {
   markdownStore.editValue(value)
 }
 
-const placeholder = `# Dia de hoje
-  ---
-  ## Testando
-  - item um
-  - item 2
-`
+
+import { onUpdated, ref } from 'vue';
+
+const scrollToEnd = () => {
+  if(markedView.value){
+    markedView.value.scrollTop = markedView.value.scrollHeight
+  }
+}
+
+const markedView = ref<HTMLElement>()
+
+onUpdated(() => scrollToEnd())
 </script>
 
 <template>
   <div class="text-editor-container">
     <div 
       class="marked-view"
+      ref="markedView"
       v-if="toggleComponents.previewText"
     >
       <div
