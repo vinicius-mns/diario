@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import MarkdownView from '@/components/markdownView/MarkdownView.vue';
 import { useDiaryStore } from '@/stores/diary';
 import { HandleDate, HandleMarkdown } from '@/utils';
 import { onMounted, reactive } from 'vue'
@@ -27,19 +28,19 @@ onMounted(() => {
 <template>
   <div class="render-day">
     <div>{{ state.date }}</div>
-    <div v-html="state.content"></div>
-    <RouterLink to="/diary"><button>Voltar</button></RouterLink>
+    <MarkdownView :content="state.content" />
+    <RouterLink to="/"><button>Voltar</button></RouterLink>
   </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .render-day {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: white;
-    z-index: 100;
   }
 }
 </style>
