@@ -24,6 +24,8 @@ const value = computed(() => marked(props.content, options))
     width: 90%;
     text-align: justify;
 
+    word-wrap: break-word;
+
     h1 {
       font-size: 1.5em;
       margin-bottom: 0;
