@@ -21,7 +21,7 @@ const props = defineProps<{ content: string }>()
 
     word-wrap: break-word;
 
-    h1 {
+    & h1 {
       font-size: 1.5em;
       margin-bottom: 0;
       padding-bottom: 0;
@@ -29,6 +29,10 @@ const props = defineProps<{ content: string }>()
     
     & strong {
       color: red;
+    }
+
+    & img {
+      max-width: 100%;
     }
 
     transition: all 0.5s
