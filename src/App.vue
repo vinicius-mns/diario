@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import { useStyle } from './stores/style';
+
+const style = useStyle()
 </script>
 
 <template>
@@ -10,5 +13,8 @@ import { RouterView } from 'vue-router';
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
+  .app {
+    background-color: v-bind('style.value.pageColor');
+  }
 }
 </style>
