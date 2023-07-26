@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MarkdownView from '@/components/markdownView/MarkdownView.vue';
 import { useDiaryStore } from '@/stores/diary';
-import { HandleDate, HandleMarkdown } from '@/utils';
+import { HandleDate } from '@/utils';
 import { onMounted, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 
@@ -10,7 +10,6 @@ const state = reactive({ content: '', date: '' })
 const diary = useDiaryStore()
 const route = useRoute()
 const router = useRouter()
-const markdown = new HandleMarkdown()
 
 onMounted(() => {
   const { id } = route.params
@@ -19,7 +18,7 @@ onMounted(() => {
   if(!findDay) router.push('/notFound')
   
   if(findDay) {
-    state.content = markdown.render(findDay.content)
+    state.content = findDay.content
     state.date = HandleDate.changeToBrazilianDate(new Date(findDay.date))
   }
 })
