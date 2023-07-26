@@ -28,7 +28,7 @@ onMounted(() => {
   <div class="render-day">
     <div>{{ state.date }}</div>
     <MarkdownView :content="state.content" />
-    <RouterLink to="/"><button>Voltar</button></RouterLink>
+    <RouterLink to="/diary"><button>Voltar</button></RouterLink>
   </div>
 </template>
 
