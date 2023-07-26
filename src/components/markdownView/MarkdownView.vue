@@ -1,20 +1,15 @@
 <script setup lang="ts">
 import { marked } from 'marked'
-import { computed } from 'vue';
 
-marked.setOptions({ breaks: true })
-
-const options = { mangle: false, headerIds: false }
+marked.setOptions({ breaks: true, mangle: false, headerIds: false })
 
 const props = defineProps<{ content: string }>()
-
-const value = computed(() => marked(props.content, options))
 </script>
 
 <template>
   <div
     class="content"
-    v-html="marked(value)"
+    v-html="marked(props.content)"
   ></div>
 </template>
 
