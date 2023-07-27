@@ -35,11 +35,10 @@ onMounted(() => {
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .render-day {
-    margin-top: 2rem;
+    padding-top: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
   }
 }
 </style>
