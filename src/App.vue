@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import { useStyle } from './stores/style';
+import ConfigComponent from './components/configComponent/ConfigComponent.vue';
 
 const style = useStyle()
 </script>
 
 <template>
   <div class="app">
+    <ConfigComponent />
     <RouterView />
   </div>
 </template>
