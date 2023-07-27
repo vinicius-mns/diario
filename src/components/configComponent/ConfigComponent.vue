@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { useStyle } from '@/stores/style'
+import { useToggleComponents } from '@/stores/toggleComponents'
+import CloseButton from '@/components/closeButton/CloseButton.vue';
 
 const style = useStyle()
+const toggle = useToggleComponents()
 </script>
 
 <template>
-  <div class="blur">
+  <div class="blur" v-if="toggle.configComponent">
     <div class="config-component">
+      <CloseButton :close="toggle.toggleConfigComponent" />
     </div>
   </div>
 </template>
@@ -37,6 +41,9 @@ const style = useStyle()
       background-color: v-bind('style.value.baseColor');
       border-radius: v-bind('style.value.borderRadius');
       box-shadow: v-bind('style.value.boxShadow');
+
+      // posicionamento (importante para o posicionamento do closebutton)
+      position: relative;
 
       width: 90%;
       min-height: 50vh;
