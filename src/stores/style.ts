@@ -13,7 +13,16 @@ export const useStyle = defineStore(style, () => {
     borderRadius: '16px',
   })
 
+  const darkMode = () => {
+    value.textColor = 'white'
+    value.especialColor = 'pink'
+    value.pageColor = '#24292e'
+    value.baseColor = '#1f2428'
+    value.boxShadow = '0 0 5px 0px rgba(0, 0, 0, 0.8)'
+  }
+
   return {
     value,
+    darkMode,
   }
 })
