@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { useStyle } from '@/stores/style';
+import { useToggleComponents } from '@/stores/toggleComponents';
 
 const style = useStyle()
+const toggle = useToggleComponents()
 </script>
 
 <template>
   <header class="top-bar">
-    <button class="logo">D I A R I O</button>
+    <button @click="toggle.toggleConfigComponent" class="logo">D I A R I O</button>
   </header>
 </template>
 
