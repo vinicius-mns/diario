@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useStyle } from '@/stores/style';
 import { marked } from 'marked'
 
 marked.setOptions({ breaks: true, mangle: false, headerIds: false })
 
 const props = defineProps<{ content: string }>()
+
+const style = useStyle()
 </script>
 
 <template>
@@ -21,6 +24,8 @@ const props = defineProps<{ content: string }>()
 
     word-wrap: break-word;
 
+    color: v-bind('style.value.textColor');
+
     & h1 {
       font-size: 1.5em;
       margin-bottom: 0;
@@ -28,7 +33,7 @@ const props = defineProps<{ content: string }>()
     }
     
     & strong {
-      color: red;
+      color: v-bind('style.value.especialColor');
     }
 
     & img {
