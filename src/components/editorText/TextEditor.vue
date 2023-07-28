@@ -74,7 +74,7 @@ const close = () => {
 
       // medidas
       width: 90%;
-      height: 5.5vh;
+      height: 40px;
       left: 2%;
       font-size: 1rem;
       box-sizing: border-box;
@@ -91,7 +91,7 @@ const close = () => {
 
     & textarea:focus {
       border-radius: 1rem;
-      height: 20vh;
+      height: 158px;
     }
 
     & .side-buttons {
