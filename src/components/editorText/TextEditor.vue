@@ -99,8 +99,8 @@ const close = () => {
     }
 
     & .side-buttons {
-      height: 20vh;
-      width: 20%;
+      height: 158px;
+      width: 12%;
       
       // display
       display: flex;
