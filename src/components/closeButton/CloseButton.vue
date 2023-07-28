@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { useStyle } from '@/stores/style'
+
 interface Iclose {
   close: () => void
 }
 
 const props = defineProps<Iclose>()
+
+const style = useStyle()
 </script>
 
 <template>
@@ -40,7 +44,7 @@ const props = defineProps<Iclose>()
       width: 1px;
       height: 80%;
       border-radius: 4px;
-      background-color: black;
+      background-color: v-bind('style.value.textColor');
       transform: rotate(45deg) 
     }
     &::before { transform: rotate(-45deg) }

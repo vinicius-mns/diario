@@ -22,6 +22,7 @@ export const useStyle = defineStore(style, () => {
     value.textColor = 'black'
     value.pageColor = 'rgb(229, 237, 245)'
     value.baseColor = 'white'
+    value.boxShadow = '0 0 4px 1px rgba(126, 126, 126, 0.3)'
 
     localStorageStyle.update(value)
   }
