@@ -5,6 +5,11 @@ import CloseButton from '@/components/closeButton/CloseButton.vue';
 
 const style = useStyle()
 const toggle = useToggleComponents()
+
+const setEspecialColor = (event: Event) => {
+  const color = (event.target as HTMLInputElement).value
+  style.changeEspecialColor(color)
+}
 </script>
 
 <template>
@@ -20,7 +25,7 @@ const toggle = useToggleComponents()
         </div>
         <div class="preset-container">
           <h3>Cor em destaque</h3>
-          <input type="color" name="color" id="color">
+          <input @input="setEspecialColor" type="color" name="color" id="color">
         </div>
       </div>
     </div>
