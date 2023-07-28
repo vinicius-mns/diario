@@ -105,12 +105,14 @@ const close = () => {
       // display
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-items: center;
 
       & button {
         // medidas
-        height: 6vh;
+        width: 100%;
+        max-width: 50px;
+        margin-top: 12px;
         aspect-ratio: 1;
         
         // estilo
