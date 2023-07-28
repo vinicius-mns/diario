@@ -23,6 +23,8 @@ export const useStyle = defineStore(style, () => {
     value.especialColor = 'blue'
     value.pageColor = 'rgb(229, 237, 245)'
     value.baseColor = 'white'
+
+    localStorageStyle.update(value)
   }
 
   const darkMode = () => {
@@ -31,6 +33,8 @@ export const useStyle = defineStore(style, () => {
     value.pageColor = '#24292e'
     value.baseColor = '#1f2428'
     value.boxShadow = '0 0 5px 0px rgba(0, 0, 0, 0.8)'
+
+    localStorageStyle.update(value)
   }
 
   return {
