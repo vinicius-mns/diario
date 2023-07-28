@@ -28,40 +28,82 @@ onMounted(() => {
 
 <template>
   <div class="render-day">
-    <div>{{ state.date }}</div>
-    <MarkdownView :content="state.content" />
-    <RouterLink to="/diary"><button class="back">Voltar</button></RouterLink>
+    <header>
+      <RouterLink to="/diary"><button class="back">Voltar</button></RouterLink>
+      <div class="date"><p>{{ state.date }}</p></div>
+    </header>
+    <main class="content">
+      <MarkdownView :content="state.content" />
+    </main>
   </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .render-day {
-    padding-top: 2rem;
+    // display
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    & .back {
+    & header {
+      // medidias
+      width: 100%;
+      height: 48px;
+
+      // display
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       // posicao
       position: fixed;
-      
-      // medidas
-      width: 50%;
-      left: 25%;
-      bottom: 30px;
-      height: 40px;
+      top: 0;
 
       // estilo
-      background-color: v-bind('style.value.baseColor');
-      border-radius: v-bind('style.value.borderRadius');
+      background-color: v-bind('style.value.pageColor');
       box-shadow: v-bind('style.value.boxShadow');
 
-      overflow: hidden;
+      & .back {
+        // posicao
+        position: absolute;
+        left: 20px;
 
-      // button estilo
-      border: none;
-      cursor: pointer;
+        // medidas
+        top: calc( ( 48px - 32px ) /2 );
+        width: 20%;
+        height: 32px;
+  
+        // estilo
+        color: v-bind('style.value.textColor');
+        background-color: v-bind('style.value.baseColor');
+        border-radius: v-bind('style.value.borderRadius');
+  
+        // button estilo
+        border: none;
+        cursor: pointer;
+      }
+
+      & .date {
+        color: v-bind('style.value.especialColor');
+      }
+    }
+
+    & main {
+      // posicao
+      padding-top: 50px;
+      padding-top: 50px;
+
+      // medidas
+      width: 100%;
+      min-height: calc( 100vh - 50px );
+
+      // display
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      // estilo
+      background-color: v-bind('style.value.baseColor');
     }
   }
 }
