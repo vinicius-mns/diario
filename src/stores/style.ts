@@ -37,9 +37,16 @@ export const useStyle = defineStore(style, () => {
     localStorageStyle.update(value)
   }
 
+  const changeEspecialColor = (newColor: string) => {
+    value.especialColor = newColor
+
+    localStorageStyle.update(value)
+  }
+
   return {
     value,
     darkMode,
     lightMode,
+    changeEspecialColor,
   }
 })
