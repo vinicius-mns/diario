@@ -7,8 +7,13 @@ export const useToggleComponents = defineStore(toggleComponents, () => {
   const previewText = ref(false)
   const togglePreviewText = () => previewText.value = !previewText.value
 
+  const configComponent = ref(false)
+  const toggleConfigComponent = () => configComponent.value = !configComponent.value
+
   return {
     previewText,
     togglePreviewText,
+    configComponent,
+    toggleConfigComponent,
   }
 })

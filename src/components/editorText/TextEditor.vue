@@ -1,135 +1,163 @@
 <script setup lang="ts">
-import { HandleMarkdown } from '@/utils';
 import { useDiaryStore } from '@/stores/diary';
 import { useMarkdownStore } from '@/stores/markdown';
-import { useToggleComponents } from '@/stores/toggleComponents';
-import { onMounted, onUpdated, ref } from 'vue';
+import { ref } from 'vue';
+import { useStyle } from '@/stores/style';
 
-const markedView = ref<HTMLElement>()
+const sideButtons = ref(false)
 
 const markdownStore = useMarkdownStore()
-const toggleComponents = useToggleComponents()
 const diary = useDiaryStore()
+const style = useStyle()
 
-const markdown = new HandleMarkdown()
-
-const createOrEditDay = () => {
+const send = () => {
   const content = markdownStore.state
   diary.createOrUpdate(content)
+  sideButtons.value = false
+  markdownStore.state = ''
 }
 
-onMounted(() => {
+const initMessageDay = () => {
   const today = diary.getLastToday()
   if(today) markdownStore.state = today.content
-})
-
-
-const scrollToEnd = () => {
-  if(markedView.value){
-    markedView.value.scrollTop = markedView.value.scrollHeight
-  }
+  sideButtons.value = true
 }
 
-onUpdated(() => scrollToEnd())
+const close = () => {
+  sideButtons.value = false
+  markdownStore.state = ''
+}
 </script>
 
 <template>
   <div class="text-editor-container">
-    <div 
-      class="marked-view"
-      ref="markedView"
-      v-if="toggleComponents.previewText"
-    >
-      <div
-        class="marked"
-        v-html="markdown.render(markdownStore.state)"
-      ></div>
-    </div>
-
     <textarea
       v-model="markdownStore.state"
       placeholder="Digite aqui"
-      @keydown.enter="createOrEditDay"
-      @focus="toggleComponents.togglePreviewText"
-      @blur="toggleComponents.togglePreviewText"
+      @focus="initMessageDay"
     ></textarea>
+    <div class="side-buttons" v-show="sideButtons">
+      <button @click="close" class="cancel"></button>
+      <button class="send" @click="send">
+        <div class="sendIco"></div>
+      </button>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .text-editor-container {
-    // posicionamento
-    width: 100%;
-    background-color: red;
+    // posicao
     position: fixed;
     bottom: 0;
+    
+    // medidas
+    width: 100%;
+    min-height: 64px;
+    
+    // estilo
+    background-color: v-bind('style.value.pageColor');
+    box-shadow: v-bind('style.value.boxShadow');
 
     // display
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-  .marked-view {
-    // posicionamento
-    margin-bottom: 0.5rem;
+    & textarea {
+      // estilo
+      border-radius: 2rem;
+      background-color: v-bind('style.value.baseColor');
+      box-shadow: v-bind('style.value.boxShadow');
+      color: v-bind('style.value.textColor');
 
-    // estilo
-    background-color: white;
-    border-radius: 1rem;
-    
-    // tamanho
-    width: 96%;
-    height: 37vh;
-    box-sizing: border-box;
-    padding: 1rem;
+      // medidas
+      width: 90%;
+      height: 5.5vh;
+      left: 2%;
+      font-size: 1rem;
+      box-sizing: border-box;
+      padding: 1rem;
 
-    // scroll
-    overflow: auto;
+      // transicao quando :focus acontecer
+      transition: 0.5s all;
 
-    .marked {
-      width: 100%;
-      height: 100%;
-      word-wrap: break-word;
+      // remove valores padros do textarea
+      resize: none;
+      border: none;
+      outline: none;
     }
 
-    //animacao
-    opacity: 0;
-    transform: translateY(30%);
-    animation: on-mount 0.5s forwards;
+    & textarea:focus {
+      border-radius: 1rem;
+      height: 20vh;
+    }
+
+    & .side-buttons {
+      height: 20vh;
+      width: 20%;
+      
+      // display
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+
+      & button {
+        // medidas
+        height: 6vh;
+        aspect-ratio: 1;
+        
+        // estilo
+        border-radius: 50%;
+
+        // button estilo
+        border: none;
+        cursor: pointer;
+      }
+
+      & .send {
+        //estilo
+        background-color: v-bind('style.value.baseColor');
+        box-shadow: v-bind('style.value.boxShadow');
+        
+        & .sendIco {
+          width: 100%;
+          height: 100%;
+          clip-path: polygon(30% 45%, 25% 20%, 90% 50%, 25% 80%, 30% 55%,50% 50%);
+          background-color: v-bind('style.value.especialColor');
+        }
+      }
+
+      & .cancel {
+        position: relative;
+        background-color: v-bind('style.value.baseColor');
+        box-shadow: v-bind('style.value.boxShadow');
+
+        $width: 8%;
+        $heigth: 60%;
+
+        &::after, &::before {
+          content: '';
+          position: absolute;
+
+          width: $width;
+          margin-left: calc( ( 100% - $width ) / 2 );
+
+          height: $heigth;
+          margin-top: calc( ( 100% - $heigth ) / 2 );
+
+          top: 0;
+          left: 0;
+          border-radius: 10px;
+          background-color: v-bind('style.value.especialColor');
+          transform: rotate(45deg) 
+        }
+        &::before { transform: rotate(-45deg) }
+      }
+    }
   }
-  
-  textarea {
-    // posicionamento
-    margin-bottom: 0.5rem;
-
-    // estilo
-    border-radius: 2rem;
-    background-color: rgb(129, 188, 122);
-
-    // tamanho
-    width: 96%;
-    height: 6vh;
-    left: 2%;
-    font-size: 1rem;
-    box-sizing: border-box;
-    padding: 1rem;
-
-    // transicao quando :focus acontecer
-    transition: 0.5s all;
-
-    // remove valores padros do textarea
-    resize: none;
-    border: none;
-    outline: none;
-  }
-
-  textarea:focus {
-    border-radius: 1rem;
-    height: 20vh;
-  }
-}
 
   @keyframes on-mount {
     to {
