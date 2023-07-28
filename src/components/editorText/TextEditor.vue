@@ -51,6 +51,8 @@ const close = () => {
     // posicao
     position: fixed;
     bottom: 0;
+    padding-bottom: 12px;
+    padding-top: 5px;
     
     // medidas
     width: 100%;
