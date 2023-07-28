@@ -11,6 +11,18 @@ const toggle = useToggleComponents()
   <div class="blur" v-if="toggle.configComponent">
     <div class="config-component">
       <CloseButton :close="toggle.toggleConfigComponent" />
+      <div>
+        <h2>Estilo</h2>
+        <div class="preset-container">
+          <h3>Modelos predefinidos</h3>
+          <button>Modo claro</button>
+          <button>Modo Escuro</button>
+        </div>
+        <div class="preset-container">
+          <h3>Cor em destaque</h3>
+          <input type="color" name="color" id="color">
+        </div>
+      </div>
     </div>
   </div>
 </template>
