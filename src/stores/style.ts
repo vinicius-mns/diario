@@ -20,7 +20,6 @@ export const useStyle = defineStore(style, () => {
 
   const lightMode = () => {
     value.textColor = 'black'
-    value.especialColor = 'blue'
     value.pageColor = 'rgb(229, 237, 245)'
     value.baseColor = 'white'
 
@@ -29,7 +28,6 @@ export const useStyle = defineStore(style, () => {
 
   const darkMode = () => {
     value.textColor = 'white'
-    value.especialColor = 'pink'
     value.pageColor = '#24292e'
     value.baseColor = '#1f2428'
     value.boxShadow = '0 0 5px 0px rgba(0, 0, 0, 0.8)'
