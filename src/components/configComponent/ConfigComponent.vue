@@ -15,8 +15,8 @@ const toggle = useToggleComponents()
         <h2>Estilo</h2>
         <div class="preset-container">
           <h3>Modelos predefinidos</h3>
-          <button>Modo claro</button>
-          <button>Modo Escuro</button>
+          <button @click="style.lightMode">Modo claro</button>
+          <button @click="style.darkMode">Modo Escuro</button>
         </div>
         <div class="preset-container">
           <h3>Cor em destaque</h3>
