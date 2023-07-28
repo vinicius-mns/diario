@@ -38,6 +38,7 @@ const style = useStyle()
 
     & img {
       max-width: 100%;
+      border-radius: v-bind('style.value.borderRadius');
     }
 
     transition: all 0.5s
