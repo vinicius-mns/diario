@@ -57,15 +57,14 @@ const close = () => {
     // medidas
     width: 100%;
     min-height: 64px;
-
+    
     // estilo
     background-color: v-bind('style.value.pageColor');
-    box-shadow: v-bind('style.value.boxShadow');
 
     // display
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 
     & textarea {
       // estilo
@@ -73,12 +72,10 @@ const close = () => {
       background-color: v-bind('style.value.baseColor');
       box-shadow: v-bind('style.value.boxShadow');
       color: v-bind('style.value.textColor');
-      border-radius: v-bind('style.value.borderRadius');
 
       // medidas
       width: 90%;
       height: 40px;
-      left: 2%;
       font-size: 1rem;
 
       // necessario para que o padding nao quebre
@@ -93,9 +90,11 @@ const close = () => {
       border: none;
       outline: none;
     }
-
+    
     & textarea:focus {
+      border-radius: v-bind('style.value.borderRadius');
       height: 158px;
+      width: 80%;
     }
 
     & .side-buttons {
