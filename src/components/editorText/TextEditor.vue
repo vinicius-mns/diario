@@ -55,7 +55,7 @@ const close = () => {
     // medidas
     width: 100%;
     min-height: 64px;
-    
+
     // estilo
     background-color: v-bind('style.value.pageColor');
     box-shadow: v-bind('style.value.boxShadow');
@@ -71,12 +71,15 @@ const close = () => {
       background-color: v-bind('style.value.baseColor');
       box-shadow: v-bind('style.value.boxShadow');
       color: v-bind('style.value.textColor');
+      border-radius: v-bind('style.value.borderRadius');
 
       // medidas
       width: 90%;
       height: 40px;
       left: 2%;
       font-size: 1rem;
+
+      // necessario para que o padding nao quebre
       box-sizing: border-box;
       padding: 1rem;
 
@@ -90,7 +93,6 @@ const close = () => {
     }
 
     & textarea:focus {
-      border-radius: 1rem;
       height: 158px;
     }
 
