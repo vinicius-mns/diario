@@ -5,12 +5,29 @@ import CloseButton from '@/components/closeButton/CloseButton.vue';
 
 const style = useStyle()
 const toggle = useToggleComponents()
+
+const setEspecialColor = (event: Event) => {
+  const color = (event.target as HTMLInputElement).value
+  style.changeEspecialColor(color)
+}
 </script>
 
 <template>
   <div class="blur" v-if="toggle.configComponent">
     <div class="config-component">
       <CloseButton :close="toggle.toggleConfigComponent" />
+      <div>
+        <h2>Estilo</h2>
+        <div class="preset-container">
+          <h3>Modelos predefinidos</h3>
+          <button @click="style.lightMode">Modo claro</button>
+          <button @click="style.darkMode">Modo Escuro</button>
+        </div>
+        <div class="preset-container">
+          <h3>Cor em destaque</h3>
+          <input @input="setEspecialColor" type="color" name="color" id="color">
+        </div>
+      </div>
     </div>
   </div>
 </template>

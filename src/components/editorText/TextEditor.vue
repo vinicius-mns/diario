@@ -51,6 +51,8 @@ const close = () => {
     // posicao
     position: fixed;
     bottom: 0;
+    padding-bottom: 12px;
+    padding-top: 5px;
     
     // medidas
     width: 100%;
@@ -58,12 +60,11 @@ const close = () => {
     
     // estilo
     background-color: v-bind('style.value.pageColor');
-    box-shadow: v-bind('style.value.boxShadow');
 
     // display
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 
     & textarea {
       // estilo
@@ -74,9 +75,10 @@ const close = () => {
 
       // medidas
       width: 90%;
-      height: 5.5vh;
-      left: 2%;
+      height: 40px;
       font-size: 1rem;
+
+      // necessario para que o padding nao quebre
       box-sizing: border-box;
       padding: 1rem;
 
@@ -88,25 +90,28 @@ const close = () => {
       border: none;
       outline: none;
     }
-
+    
     & textarea:focus {
-      border-radius: 1rem;
-      height: 20vh;
+      border-radius: v-bind('style.value.borderRadius');
+      height: 158px;
+      width: 80%;
     }
 
     & .side-buttons {
-      height: 20vh;
-      width: 20%;
+      height: 158px;
+      width: 12%;
       
       // display
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-items: center;
 
       & button {
         // medidas
-        height: 6vh;
+        width: 100%;
+        max-width: 50px;
+        margin-top: 12px;
         aspect-ratio: 1;
         
         // estilo
