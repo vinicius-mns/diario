@@ -36,6 +36,7 @@ const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
     width: 96%;
     max-height: 68vh;
     margin-top: 15px;
+    font-size: 1rem;
 
     // diaplay
     display: flex;
