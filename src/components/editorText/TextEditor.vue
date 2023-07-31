@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDiaryStore } from '@/stores/diary';
 import { useMarkdownStore } from '@/stores/markdown';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useStyle } from '@/stores/style';
 
 const editOn = ref(false)
@@ -20,7 +20,7 @@ const send = () => {
   textActionButton.value = 'Editar'
 }
 
-const initMessageDay = () => {
+const openEditDay = () => {
   const today = diary.getLastToday()
   if(today) markdownStore.state = today.content
 
@@ -47,6 +47,7 @@ onMounted(() => {
     <textarea
       v-model="markdownStore.state"
       placeholder="Digite aqui"
+      @blur="textArea?.focus()"
       ref="textArea"
       v-if="editOn"
     ></textarea>
