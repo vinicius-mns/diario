@@ -4,7 +4,7 @@ import { useMarkdownStore } from '@/stores/markdown';
 import { ref } from 'vue';
 import { useStyle } from '@/stores/style';
 
-const sideButtons = ref(false)
+const editOn = ref(false)
 
 const markdownStore = useMarkdownStore()
 const diary = useDiaryStore()
@@ -13,14 +13,15 @@ const style = useStyle()
 const send = () => {
   const content = markdownStore.state
   diary.createOrUpdate(content)
-  sideButtons.value = false
+  editOn.value = false
   markdownStore.state = ''
 }
 
 const initMessageDay = () => {
   const today = diary.getLastToday()
   if(today) markdownStore.state = today.content
-  sideButtons.value = true
+
+  editOn.value = true
 }
 
 const close = () => {
