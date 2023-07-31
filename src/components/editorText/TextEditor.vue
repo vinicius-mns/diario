@@ -5,6 +5,8 @@ import { ref } from 'vue';
 import { useStyle } from '@/stores/style';
 
 const editOn = ref(false)
+const textActionButton = ref('Criar')
+const textArea = ref<HTMLElement>()
 
 const markdownStore = useMarkdownStore()
 const diary = useDiaryStore()
@@ -15,6 +17,7 @@ const send = () => {
   diary.createOrUpdate(content)
   editOn.value = false
   markdownStore.state = ''
+  textActionButton.value = 'Editar'
 }
 
 const initMessageDay = () => {
@@ -25,7 +28,7 @@ const initMessageDay = () => {
 }
 
 const close = () => {
-  sideButtons.value = false
+  editOn.value = false
   markdownStore.state = ''
 }
 </script>
@@ -35,9 +38,16 @@ const close = () => {
     <textarea
       v-model="markdownStore.state"
       placeholder="Digite aqui"
-      @focus="initMessageDay"
+      ref="textArea"
+      v-if="editOn"
     ></textarea>
-    <div class="side-buttons" v-show="sideButtons">
+
+    <button
+      v-else @click="openEditDay"
+      class="actionButton"
+    >{{ textActionButton }}</button>
+
+    <div class="side-buttons" v-show="editOn">
       <button @click="close" class="cancel"></button>
       <button class="send" @click="send">
         <div class="sendIco"></div>
