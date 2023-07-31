@@ -31,6 +31,15 @@ const close = () => {
   editOn.value = false
   markdownStore.state = ''
 }
+
+onMounted(() => {
+  const lastDay = diary.getLastToday() 
+
+  if(lastDay){
+    const todayAlreadyExists = diary.compareDateOfToday(new Date(lastDay.date)).sameDay()
+    if( todayAlreadyExists ) { textActionButton.value = 'Editar' }
+  }
+})
 </script>
 
 <template>
