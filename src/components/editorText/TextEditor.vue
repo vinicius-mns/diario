@@ -25,6 +25,7 @@ const openEditDay = () => {
   if(today) markdownStore.state = today.content
 
   editOn.value = true
+  setTimeout(() => textArea.value?.focus() ,1)
 }
 
 const close = () => {
