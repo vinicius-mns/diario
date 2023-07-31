@@ -77,7 +77,7 @@ onMounted(() => {
     
     // medidas
     width: 100%;
-    min-height: 64px;
+    min-height: 50px;
     
     // estilo
     background-color: v-bind('style.value.pageColor');
@@ -87,17 +87,32 @@ onMounted(() => {
     align-items: center;
     justify-content: space-evenly;
 
+    .actionButton {
+      // medidas
+      margin-top: 7px;
+      height: 40px;
+      width: 50%;
+
+      // estilo
+      border-radius: 100px;
+      background-color: v-bind('style.value.baseColor');
+      box-shadow: v-bind('style.value.boxShadow');
+      color: v-bind('style.value.especialColor');
+      border: solid 1px;
+      border-color: v-bind('style.value.especialColor');
+    }
+
     & textarea {
       // estilo
-      border-radius: 2rem;
+      border-radius: v-bind('style.value.borderRadius');
       background-color: v-bind('style.value.baseColor');
       box-shadow: v-bind('style.value.boxShadow');
       color: v-bind('style.value.textColor');
 
       // medidas
-      width: 90%;
-      height: 40px;
       font-size: 1rem;
+      height: 158px;
+      width: 80%;
 
       // necessario para que o padding nao quebre
       box-sizing: border-box;
@@ -110,12 +125,6 @@ onMounted(() => {
       resize: none;
       border: none;
       outline: none;
-    }
-    
-    & textarea:focus {
-      border-radius: v-bind('style.value.borderRadius');
-      height: 158px;
-      width: 80%;
     }
 
     & .side-buttons {
