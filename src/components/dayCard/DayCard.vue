@@ -17,7 +17,10 @@ const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
 <template>
   <button class="day-card" @click="openCard">
     <div class="header">
-      <p>{{ HandleDate.changeToBrazilianDate(props.date) }}</p>
+      <p>{{`
+        ${ HandleDate.changeToBrazilianDate(props.date) }
+        - ${ HandleDate.getWeek(props.date) }
+      `}}</p>
     </div>
     <MarkdownView :content="props.content" />
   </button>
