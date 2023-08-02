@@ -82,6 +82,7 @@ onMounted(() => {
     
     // estilo
     background-color: v-bind('style.value.pageColor');
+    box-shadow: v-bind('style.value.boxShadow');
 
     // display
     display: flex;
