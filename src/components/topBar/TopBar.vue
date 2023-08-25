@@ -29,7 +29,6 @@ const toggle = useToggleComponents()
     
     // estilo
     background-color: v-bind('style.value.pageColor');
-    box-shadow: v-bind('style.value.boxShadow');
 
     .logo {
       // medidas
