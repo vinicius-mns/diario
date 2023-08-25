@@ -59,7 +59,8 @@ const setEspecialColor = (event: Event) => {
       align-items: center;
       
       // medidas
-      width: 100%;
+      width: 90%;
+      min-height: 50vh;
 
       // estilo
       color: v-bind('style.value.textColor');
