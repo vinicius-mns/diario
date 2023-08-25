@@ -24,7 +24,7 @@ const toggle = useToggleComponents()
     align-items: center;
 
     // tamanho
-    height: 6vh;
+    height: 40px;
     width: 100%;
     
     // estilo
