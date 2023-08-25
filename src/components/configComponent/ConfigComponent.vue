@@ -53,6 +53,14 @@ const setEspecialColor = (event: Event) => {
     justify-content: center;
 
     & .config-component {
+      // display
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      // medidas
+      width: 100%;
+
       // estilo
       color: v-bind('style.value.textColor');
       background-color: v-bind('style.value.baseColor');
