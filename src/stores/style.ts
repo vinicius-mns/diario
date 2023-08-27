@@ -48,6 +48,10 @@ export const useStyle = defineStore(style, () => {
     }
   }
 
+  const toggleDateOnCard = () => {
+    value.dateOnCard = !value.dateOnCard
+  }
+
   const changeEspecialColor = (newColor: string) => {
     value.especialColor = newColor
 
@@ -59,6 +63,7 @@ export const useStyle = defineStore(style, () => {
     darkMode,
     lightMode,
     toggleTeme,
+    toggleDateOnCard,
     changeEspecialColor,
   }
 })
