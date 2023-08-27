@@ -12,6 +12,8 @@ export const useStyle = defineStore(style, () => {
     baseColor: 'white',
     boxShadow: '0 0 4px 1px rgba(126, 126, 126, 0.3)',
     borderRadius: '16px',
+    darkMode: false,
+    dateOnCard: false,
   }
 
   const localStorageStyle = new HandleLocalStorage(style, initState)
