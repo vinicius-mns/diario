@@ -2,6 +2,7 @@
 import { useStyle } from '@/stores/style'
 import { useToggleComponents } from '@/stores/toggleComponents'
 import CloseButton from '@/components/closeButton/CloseButton.vue';
+import SwitchButton from '../switchbutton/SwitchButton.vue';
 
 const style = useStyle()
 const toggle = useToggleComponents()
@@ -16,16 +17,37 @@ const setEspecialColor = (event: Event) => {
   <div class="blur" v-if="toggle.configComponent">
     <div class="config-component">
       <CloseButton :close="toggle.toggleConfigComponent" />
-      <div>
-        <h2>Estilo</h2>
-        <div class="preset-container">
-          <h3>Modelos predefinidos</h3>
-          <button @click="style.lightMode">Modo claro</button>
-          <button @click="style.darkMode">Modo Escuro</button>
+
+      <hr>
+
+      <div class="options-container">
+        <div class="option">
+          <SwitchButton
+            title="Modo escuro"
+            :togglebutton="style.toggleTeme"
+            :state="style.value.darkMode"
+          />
         </div>
-        <div class="preset-container">
-          <h3>Cor em destaque</h3>
-          <input @input="setEspecialColor" type="color" name="color" id="color">
+
+        <div class="option">
+          <div class="especial-color-container">
+            <div><p>Cor em destaque</p></div>
+            <div class="color">
+              <input @input="setEspecialColor" type="color" name="color" id="color">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="options-container">
+        <div class="option">
+          <SwitchButton
+            title="Data no card"
+            :togglebutton="style.toggleDateOnCard"
+            :state="style.value.dateOnCard"
+          />
         </div>
       </div>
     </div>
@@ -64,15 +86,79 @@ const setEspecialColor = (event: Event) => {
 
       // estilo
       color: v-bind('style.value.textColor');
-      background-color: v-bind('style.value.baseColor');
+      background-color: v-bind('style.value.pageColor');
       border-radius: v-bind('style.value.borderRadius');
       box-shadow: v-bind('style.value.boxShadow');
+
+      // animacao
+      transition: all 0.5s;
 
       // posicionamento (importante para o posicionamento do closebutton)
       position: relative;
 
-      width: 90%;
-      min-height: 50vh;
+      hr {
+        opacity: 0;
+        padding: 0;
+        width: 100%;
+        margin: 20px;
+      }
+
+      h2 {
+        margin: 0;
+        padding: 0;
+        background-color: red;
+      }
+
+      & p {
+        margin: 0;
+        padding: 0;
+        font-size: 18px;
+      }
+
+      & .options-container {
+        //medidas
+        width: 98%;
+
+        // display
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & .option {
+          // medidas
+          width: 96%;
+          margin: 8px;
+
+          display: flex;
+          justify-content: center;
+
+          & .especial-color-container {
+            // display
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            // medidas
+            width: 100%;
+            
+            & input {
+              cursor: pointer;
+              width: 100%;
+              opacity: 0;
+            }
+  
+            & .color {
+              // estilo
+              background-color: v-bind('style.value.especialColor');
+              border-radius: v-bind('style.value.borderRadius');
+  
+              // medidas
+              height: 28px;
+              aspect-ratio: 3;
+            }
+          }
+        }
+      }
     }
   }
 }
