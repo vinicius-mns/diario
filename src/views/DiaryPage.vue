@@ -35,6 +35,9 @@ const diary = useDiaryStore()
 
     // cores
     background-color: transparent;
+
+    // animacao
+    transition: all 0.5s;
   }
 }
 </style>
