@@ -18,6 +18,9 @@ const style = useStyle()
   .app {
     background-color: v-bind('style.value.pageColor');
     min-height: 100vh;
+    
+    // animation
+    transition: all 0.5s;
   }
 }
 </style>
