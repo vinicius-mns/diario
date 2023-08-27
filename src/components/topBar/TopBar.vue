@@ -30,6 +30,9 @@ const toggle = useToggleComponents()
     // estilo
     background-color: v-bind('style.value.pageColor');
 
+    // animacao
+    transition: all 0.5s;
+
     .logo {
       // medidas
       height: 100%;
