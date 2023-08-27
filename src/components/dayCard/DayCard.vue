@@ -17,7 +17,7 @@ const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
 <template>
   <button class="day-card" @click="openCard">
     <div class="header">
-      <p>{{`
+      <p v-if="style.value.dateOnCard">{{`
         ${ HandleDate.changeToBrazilianDate(props.date) }
         - ${ HandleDate.getWeek(props.date) }
       `}}</p>
@@ -53,6 +53,8 @@ const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
     // botao valores
     border: none;
     cursor: pointer;
+
+    // animacao
     transition: all 0.5s;
 
     & .header {

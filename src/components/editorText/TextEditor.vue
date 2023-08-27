@@ -54,9 +54,10 @@ onMounted(() => {
     ></textarea>
 
     <button
-      v-else @click="openEditDay"
+      v-else
+      @click="openEditDay"
       class="actionButton"
-    >{{ textActionButton }}</button>
+    ><p>{{ textActionButton }}</p></button>
 
     <div class="side-buttons" v-show="editOn">
       <button @click="close" class="cancel"></button>
@@ -84,6 +85,9 @@ onMounted(() => {
     background-color: v-bind('style.value.pageColor');
     box-shadow: v-bind('style.value.boxShadow');
 
+    // animacao
+    transition: all 0.5s;
+
     // display
     display: flex;
     align-items: center;
@@ -95,13 +99,24 @@ onMounted(() => {
       height: 40px;
       width: 50%;
 
+      // display
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       // estilo
-      border-radius: 100px;
+      border-radius: v-bind('style.value.borderRadius');
       background-color: v-bind('style.value.baseColor');
       box-shadow: v-bind('style.value.boxShadow');
       color: v-bind('style.value.especialColor');
-      border: solid 1px;
-      border-color: v-bind('style.value.especialColor');
+      border: none;
+
+      // animation
+      transition: all 0.5s;
+
+      & p {
+        font-size: 16px;
+      }
     }
 
     & textarea {
@@ -160,8 +175,8 @@ onMounted(() => {
         box-shadow: v-bind('style.value.boxShadow');
         
         & .sendIco {
-          width: 100%;
-          height: 100%;
+          width: 90%;
+          height: 90%;
           clip-path: polygon(30% 45%, 25% 20%, 90% 50%, 25% 80%, 30% 55%,50% 50%);
           background-color: v-bind('style.value.especialColor');
         }
@@ -172,7 +187,7 @@ onMounted(() => {
         background-color: v-bind('style.value.baseColor');
         box-shadow: v-bind('style.value.boxShadow');
 
-        $width: 8%;
+        $width: 4%;
         $heigth: 60%;
 
         &::after, &::before {
