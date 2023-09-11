@@ -46,7 +46,7 @@ const toggleRemember = () => {
       <div class="mini-form">
         <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="remember"/>
       </div>
-      <button type="submit"><p>Criar contar</p></button>
+      <button type="submit"><p>Criar conta</p></button>
     </form>
   </main>
 </template>
