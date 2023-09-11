@@ -14,6 +14,28 @@
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+    & nav {
+      // medeidas
+      height: 90vh;
+      width: 90%;
+
+      //display
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      & a {
+        width: 90%;
+
+        & button {
+          // medidas
+          width: 100%;
     
   }
 }
