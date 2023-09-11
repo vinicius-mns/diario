@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import DiaryPage from '@/views/DiaryPage.vue'
 import DiaryPageId from '@/views/DiaryPageId.vue'
 import NotFound from '@/views/NotFound.vue'
+import HomePage from '@/views/HomePage.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -9,7 +10,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: 'diary'
+      component: HomePage
     },
     {
       path: '/diary',
