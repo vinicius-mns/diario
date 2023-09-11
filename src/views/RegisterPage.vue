@@ -109,12 +109,12 @@ const toggleRemember = () => {
         align-items: center;
 
         // medidas
-        width: 100%;
+        width: 90%;
         margin-top: 20px;
         
         & input {
           // medidas
-          width: 90%;
+          width: 100%;
           height: 42px;
           font-size: 16px;
 
