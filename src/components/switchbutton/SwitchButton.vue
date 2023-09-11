@@ -22,7 +22,12 @@ const props = defineProps({
 <template>
   <div class="switch-container">
     <p>{{ title }}</p>
-    <button class="toggle-button" @click="togglebutton()" :class="JSON.stringify(state)">
+    <button
+      type="button"
+      class="toggle-button"
+      @click="togglebutton()"
+      :class="JSON.stringify(state)"
+    >
       <div class="indicator" :class="JSON.stringify(state)">
         <div class="circle"></div>
       </div>
