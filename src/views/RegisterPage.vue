@@ -143,16 +143,23 @@ const toggleRemember = () => {
         margin-bottom: 20px;
         
         // estilo
-        color: v-bind('style.value.textColor');
-        background-color: v-bind('style.value.especialColor');
+        color: white;
+        background-color: rgb(82, 82, 199);
         border-radius: 4px;
         border: none;
+        box-shadow: black 4px 4px;
+        cursor: pointer;
 
         & p {
           margin: 0;
           padding: 0;
           font-size: 18px;
         }
+      }
+
+      & button:active {
+        box-shadow: 0px 0px;
+        transform: translate(4px, 4px);
       }
     }
   }
