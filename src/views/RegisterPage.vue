@@ -1,5 +1,12 @@
 <script setup lang="ts">
 const style = useStyle()
+
+const remember = ref(false)
+
+const toggleRemember = () => {
+  remember.value = !remember.value
+  console.log(remember.value)
+}
 </script>
 
 <template>
@@ -35,6 +42,9 @@ const style = useStyle()
           v-model="content.password2"
           placeholder="Repetir senha"
         />
+      </div>
+      <div class="mini-form">
+        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="remember"/>
       </div>
       <button type="submit"><p>Criar contar</p></button>
     </form>
