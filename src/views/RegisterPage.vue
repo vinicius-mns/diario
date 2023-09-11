@@ -47,6 +47,7 @@ const toggleRemember = () => {
         <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="remember"/>
       </div>
       <button type="submit"><p>Criar conta</p></button>
+      <RouterLink to="/login">Já possuo uma conta</RouterLink>
     </form>
   </main>
 </template>
@@ -161,6 +162,11 @@ const toggleRemember = () => {
         box-shadow: 0px 0px;
         transform: translate(4px, 4px);
       }
+    }
+
+    & a {
+      color: v-bind('style.value.textColor');
+      margin-bottom: 5px;
     }
   }
 }
