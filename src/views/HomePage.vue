@@ -36,7 +36,13 @@
         & button {
           // medidas
           width: 100%;
-    
+  
+          // estilo
+          cursor: pointer;
+          border: none;
+        }
+      }
+    }
   }
 }
 </style>
