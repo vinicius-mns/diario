@@ -126,6 +126,11 @@ const toggleRemember = () => {
           outline: none;
           border: none;
         }
+
+        & input::placeholder {
+          color: v-bind('style.value.textColor');
+          opacity: 55%;
+        }
       }
 
       & button {
