@@ -98,8 +98,15 @@ const style = useStyle()
 
 
   @keyframes rotation {
-    to {
-      transform: rotate(1turn);
+    25% {
+      transform: rotate(180deg);
+    }
+    50% {
+      transform-style: preserve-3d;
+      transform: perspective(1200px) rotateX(60deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 </style>
