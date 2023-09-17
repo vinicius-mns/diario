@@ -10,10 +10,17 @@ export const useToggleComponents = defineStore(toggleComponents, () => {
   const configComponent = ref(false)
   const toggleConfigComponent = () => configComponent.value = !configComponent.value
 
+  const globalLoading = ref(false)
+  const toggleGlobalLoading = (state?: boolean) => {
+    state ? globalLoading.value = state : globalLoading.value = !globalLoading.value
+  }
+
   return {
     previewText,
     togglePreviewText,
     configComponent,
     toggleConfigComponent,
+    globalLoading,
+    toggleGlobalLoading
   }
 })
