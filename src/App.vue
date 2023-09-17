@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router';
 import { useStyle } from './stores/style';
 import ConfigComponent from './components/configComponent/ConfigComponent.vue';
+import LoadingComponent from './components/loading/LoadingComponent.vue';
 
 const style = useStyle()
 </script>
@@ -10,6 +11,7 @@ const style = useStyle()
   <div class="app">
     <ConfigComponent />
     <RouterView />
+    <LoadingComponent />
   </div>
 </template>
 
