@@ -15,9 +15,16 @@ const router = createRouter({
       component: HomePage
     },
     {
+      path: '/diary/local',
+      name: 'localDiary',
+      component: DiaryPage,
+      props: { get: 'local' }
+    },
+    {
       path: '/diary',
       name: 'diary',
-      component: DiaryPage
+      component: DiaryPage,
+      props: { get: 'remote' }
     },
     {
       path: '/diary/:id',
