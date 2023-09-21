@@ -13,6 +13,13 @@ export const useApi = defineStore('api', () => {
         create: () => `${conectApiUrl}/user/create`,
         login: () => `${conectApiUrl}/user/login`,
       },
+      diary: {
+        card: {
+          create: () => `${conectApiUrl}/diary/card/create`,
+          read: () => `${conectApiUrl}/diary/card/read`,
+          update: () => `${conectApiUrl}/diary/card/update`,
+        }
+      }
     }
   }
 
