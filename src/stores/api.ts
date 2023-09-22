@@ -118,6 +118,39 @@ export const useApi = defineStore('api', () => {
           }
         ]
       }
+
+      const read = () => {
+        props.loading(true)
+
+        const token = props.token.read
+        
+        if(token){
+          const path = props.apiUrl.diary.card.read()
+      
+          const headers = { 'Authorization': token }
+    
+          return axios.get(path, { headers })
+            .then((response) => {
+              props.loading(false)
+    
+              const sucess = response.status === httpsStatus.ok
+      
+              return sucess
+                ? response.data as ICard[]
+                : _error(response.data)
+            })
+            .catch((e) => {
+              props.loading(false)
+              _error(e)
+            })
+        } else {
+          _error('token nao declarado')
+        }
+      }
+
+      return {
+        read,
+      }
     }
 
     return {
