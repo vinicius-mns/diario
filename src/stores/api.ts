@@ -42,7 +42,7 @@ export const useApi = defineStore('api', () => {
     const _setTokenAndPushToDiary = (token: string) => {
       props.token.update(token)
 
-      _redirectTo.remoteDiary()
+      props.redirect.remoteDiary()
     }
 
     const _error = (error: any) => {
@@ -103,14 +103,12 @@ export const useApi = defineStore('api', () => {
 
     const card = () => {
 
-      const _error = (error: any): ICard[] => {
+      const _error = (error: any) => {
+        props.token.delete()
+  
         console.log(error)
-        return [
-          {
-            content: `Error: ${error}`,
-            date: new Date().getTime()
-          }
-        ]
+    
+        props.redirect.homePage()
       }
 
       const read = () => {
