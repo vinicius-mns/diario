@@ -49,8 +49,6 @@ export const useApi = defineStore('api', () => {
       props.token.delete()
   
       console.log(error)
-  
-      _redirectTo.homePage()
     }
 
     const create = (data: IUser) => {
