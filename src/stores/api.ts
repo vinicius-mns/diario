@@ -13,6 +13,14 @@ export const useApi = defineStore('api', () => {
   const props = {
     loading: (state: boolean) => useToggleComponents().toggleGlobalLoading(state),
     token: token_localStorage,
+    redirect: {
+      homePage: () => {
+        router.push('/')
+      },
+      remoteDiary: () => {
+        router.push('/diary/remote')
+      }
+    },
     apiUrl: {
       user: {
         create: () => `${conectApiUrl}/user/create`,
@@ -29,15 +37,6 @@ export const useApi = defineStore('api', () => {
   }
 
   const user = () => {
-
-    const _redirectTo = {
-      homePage: () => {
-        router.push('/')
-      },
-      remoteDiary: () => {
-        router.push('/diary/remote')
-      }
-    }
 
     const _setTokenAndPushToDiary = (token: string) => {
       props.token.update(token)
