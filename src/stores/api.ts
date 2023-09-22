@@ -25,7 +25,13 @@ export const useApi = defineStore('api', () => {
 
   const user = () => {
 
-    const create = (data: IUser) => {
+    const _redirectTo = {
+      homePage: () => {
+        router.push('/')
+      },
+      remoteDiary: () => {
+        router.push('/diary/remote')
+      }
     }
 
     const login = (date: Iuser) => {
