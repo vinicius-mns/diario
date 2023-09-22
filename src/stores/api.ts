@@ -1,6 +1,10 @@
 import { defineStore } from "pinia"
 import { useToggleComponents } from "./toggleComponents"
 import type { IUser } from '@/interfaces'
+import axios from "axios"
+import { httpsStatus } from "@/utils/httpStatus"
+import { token_localStorage } from "@/myLocalStorage"
+import router from "@/router"
 
 export const useApi = defineStore('api', () => {
 
@@ -8,6 +12,7 @@ export const useApi = defineStore('api', () => {
 
   const props = {
     loading: (state: boolean) => useToggleComponents().toggleGlobalLoading(state),
+    token: token_localStorage,
     apiUrl: {
       user: {
         create: () => `${conectApiUrl}/user/create`,
