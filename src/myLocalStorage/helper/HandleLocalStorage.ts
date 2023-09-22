@@ -1,12 +1,14 @@
 export class HandleLocalStorage<T> {
   
-  constructor(private _key: string, private _defaultValue: T){
+  constructor(private _key: string, private _defaultValue?: T){
     this._init()
   }
 
   private _init(): void {
-    if(!localStorage.getItem(this._key)) {
-      localStorage.setItem(this._key, JSON.stringify(this._defaultValue))
+    if(this._defaultValue) {
+      if(!localStorage.getItem(this._key)) {
+        localStorage.setItem(this._key, JSON.stringify(this._defaultValue))
+      }
     }
   }
 
