@@ -52,6 +52,26 @@ export const useApi = defineStore('api', () => {
       _redirectTo.homePage()
     }
 
+    const create = (data: IUser) => {
+      props.loading(true)
+      const path = props.apiUrl.user.create()
+      
+      axios.post(path, data)
+        .then((response) => {
+          props.loading(false)
+          
+          const createdSucess = response.status === httpsStatus.created
+  
+          createdSucess
+            ? _setTokenAndPushToDiary(response.data)
+            : _error(response.data)
+        })
+        .catch((e) => {
+          props.loading(false)
+
+          _error(e)
+        })
+    }
 
     const login = (date: IUser) => {
     }
