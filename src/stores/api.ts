@@ -93,6 +93,12 @@ export const useApi = defineStore('api', () => {
         })
     }
 
+    const logout = () => {
+      props.toggle.toggleConfigComponent()
+      props.redirect.homePage()
+      props.token.delete()
+    }
+
     const redirectIfToken = () => {
       if(props.token.read) {
         props.redirect.remoteDiary()
@@ -102,6 +108,7 @@ export const useApi = defineStore('api', () => {
     return {
       create,
       login,
+      logout,
       redirectIfToken,
     }
   }
