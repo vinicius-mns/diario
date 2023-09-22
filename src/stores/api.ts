@@ -78,7 +78,25 @@ export const useApi = defineStore('api', () => {
         })
     }
 
-    const login = (date: IUser) => {
+    const login = (data: IUser) => {
+      props.loading(true)
+      const path = props.apiUrl.user.login()
+      
+      axios.post(path, data)
+        .then((response) => {
+          props.loading(false)
+
+          const loggad = response.status === httpsStatus.ok
+  
+          return loggad
+            ? _setTokenAndPushToDiary(response.data)
+            : _error(response.data)
+        })
+        .catch((e) => {
+          props.loading(false)
+
+          _error(e)
+        })
     }
 
     return {
