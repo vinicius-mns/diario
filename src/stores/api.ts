@@ -34,7 +34,15 @@ export const useApi = defineStore('api', () => {
       }
     }
 
-    const login = (date: Iuser) => {
+    const _setTokenAndPushToDiary = (token: string) => {
+      props.loading(false)
+
+      props.token.update(token)
+
+      _redirectTo.remoteDiary()
+    }
+
+    const login = (date: IUser) => {
     }
 
     return {
