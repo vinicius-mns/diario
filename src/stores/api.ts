@@ -1,6 +1,6 @@
 import { defineStore } from "pinia"
 import { useToggleComponents } from "./toggleComponents"
-import type { IUser } from '@/interfaces'
+import type { ICard, IUser } from '@/interfaces'
 import axios from "axios"
 import { httpsStatus } from "@/utils/httpStatus"
 import { token_localStorage } from "@/myLocalStorage"
