@@ -12,6 +12,7 @@ export const useApi = defineStore('api', () => {
 
   const props = {
     loading: (state: boolean) => useToggleComponents().toggleGlobalLoading(state),
+    toggle: useToggleComponents(),
     token: token_localStorage,
     redirect: {
       homePage: () => {
