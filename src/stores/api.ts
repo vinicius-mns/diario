@@ -104,4 +104,24 @@ export const useApi = defineStore('api', () => {
       login,
     }
   }
+
+  const diary = () => {
+
+    const card = () => {
+
+      const _error = (error: any): ICard[] => {
+        console.log(error)
+        return [
+          {
+            content: `Error: ${error}`,
+            date: new Date().getTime()
+          }
+        ]
+      }
+    }
+
+    return {
+      card: card(),
+    }
+  }
 })
