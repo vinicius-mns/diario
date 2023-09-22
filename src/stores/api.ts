@@ -93,9 +93,16 @@ export const useApi = defineStore('api', () => {
         })
     }
 
+    const redirectIfToken = () => {
+      if(props.token.read) {
+        props.redirect.remoteDiary()
+      }
+    }
+
     return {
       create,
       login,
+      redirectIfToken,
     }
   }
 
