@@ -42,6 +42,17 @@ export const useApi = defineStore('api', () => {
       _redirectTo.remoteDiary()
     }
 
+    const _error = (error: any) => {
+      props.loading(false)
+
+      props.token.delete()
+  
+      console.log(error)
+  
+      _redirectTo.homePage()
+    }
+
+
     const login = (date: IUser) => {
     }
 
