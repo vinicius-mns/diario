@@ -157,4 +157,9 @@ export const useApi = defineStore('api', () => {
       card: card(),
     }
   }
+
+  return {
+    user: user(),
+    diary: diary(),
+  }
 })
