@@ -40,16 +40,12 @@ export const useApi = defineStore('api', () => {
     }
 
     const _setTokenAndPushToDiary = (token: string) => {
-      props.loading(false)
-
       props.token.update(token)
 
       _redirectTo.remoteDiary()
     }
 
     const _error = (error: any) => {
-      props.loading(false)
-
       props.token.delete()
   
       console.log(error)
