@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+import { useApi } from '@/stores/api'
+
+const autoLogin = useApi().user.redirectIfToken()
+
+onMounted(() => autoLogin)
 </script>
 
 <template>
