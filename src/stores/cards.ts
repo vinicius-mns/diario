@@ -1,30 +1,27 @@
-import { HandleDate, HandleLocalStorage } from '@/utils'
-import { type IDay } from '@/interfaces'
+import { HandleDate } from '@/utils'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
-import { boasVindas } from '@/assets/boasVindas'
+import type { ICard } from '@/interfaces'
+import { cards_localStorage } from '@/myLocalStorage'
 
-const diaryStore = 'diaryStore'
-export const useDiaryStore = defineStore(diaryStore, () => {
+export const useCards = defineStore('cards', () => {
 
-  const initState: IDay[] = [{ date: new Date(), content: boasVindas }]
-
-  const localStorageDiary = new HandleLocalStorage(diaryStore, initState)
+  const cards = cards_localStorage
   
-  const state = reactive(localStorageDiary.read)
+  const state: ICard[] = reactive(cards.read)
 
-  const getListOfDays = () => state
+  const getCards = () => state
 
   const createDay = (content: string) => {
-    state.push({content, date: HandleDate.create()})
-    localStorageDiary.update(state)
+    state.push({content, date: new Date().getTime()})
+    cards.update(state)
   }
 
   const updateDay = (content: string) => {
-    const today = state.pop() as unknown as IDay
+    const today = state.pop() as unknown as ICard
     today.content = content
     state.push(today)
-    localStorageDiary.update(state)
+    cards.update(state)
   }
 
   const compareDateOfToday = (date: Date) => {
@@ -61,7 +58,7 @@ export const useDiaryStore = defineStore(diaryStore, () => {
 
     if( index !== -1 ){
       state.splice(index, 1)
-      localStorageDiary.update(state)
+      cards.update(state)
     }
   }
 
@@ -85,7 +82,7 @@ export const useDiaryStore = defineStore(diaryStore, () => {
   }
 
   return {
-    getListOfDays,
+    getCards,
     createOrUpdate,
     DeleteDay,
     getDay,
