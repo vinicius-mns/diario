@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import { useStyle } from './stores/style';
-import ConfigComponent from './components/configComponent/ConfigComponent.vue';
-import LoadingComponent from './components/loading/LoadingComponent.vue';
 
 const style = useStyle()
 </script>
 
 <template>
   <div class="app">
-    <ConfigComponent />
     <RouterView />
-    <LoadingComponent />
   </div>
 </template>
 
