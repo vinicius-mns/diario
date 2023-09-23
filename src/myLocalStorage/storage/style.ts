@@ -1,6 +1,17 @@
 import { HandleLocalStorage } from "@/myLocalStorage/helper/HandleLocalStorage"
 
-const initState = {
+export type IStyle = {
+  textColor: string,
+  especialColor: string,
+  pageColor: string,
+  baseColor: string,
+  boxShadow: string,
+  borderRadius: string,
+  darkMode: boolean,
+  dateOnCard: boolean,
+}
+
+const initState: IStyle = {
   textColor: 'black',
   especialColor: 'rgb(82, 82, 199)',
   pageColor: 'rgb(229, 237, 245)',
