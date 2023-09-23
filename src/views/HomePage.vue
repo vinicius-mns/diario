@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useApi } from '@/stores/api'
+import { useStyle } from '@/stores/style';
 
 const autoLogin = useApi().user.redirectIfToken()
+
+const style = useStyle()
 
 onMounted(() => autoLogin)
 </script>
@@ -20,9 +23,12 @@ onMounted(() => autoLogin)
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .home-page {
+    // display
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // medidas
     height: 100vh;
   
     & nav {
@@ -46,6 +52,10 @@ onMounted(() => autoLogin)
           // estilo
           cursor: pointer;
           border: none;
+          border-radius: v-bind('style.value.borderRadius');
+          color: v-bind('style.value.textColor');
+          background-color: v-bind('style.value.baseColor');
+          box-shadow: v-bind('style.value.boxShadow');
         }
       }
     }
