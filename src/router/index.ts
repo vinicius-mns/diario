@@ -18,7 +18,7 @@ const router = createRouter({
     {
       path: '/diary',
       name: 'diary',
-      component: ToolsPage,
+      component: DiaryPage,
       children: [
         {
           path: 'remote',
