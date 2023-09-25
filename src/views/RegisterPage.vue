@@ -1,11 +1,36 @@
 <script setup lang="ts">
+import { reactive } from 'vue'
+import { useStyle } from '@/stores/style';
+import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
+import { useApi } from '@/stores/api';
+
 const style = useStyle()
 
-const remember = ref(false)
+const api = useApi()
 
-const toggleRemember = () => {
-  remember.value = !remember.value
-  console.log(remember.value)
+const content = reactive({
+  email: '',
+  password: '',
+  password2: '',
+  remember: false,
+})
+
+const toggleRemember = () => content.remember = !content.remember
+
+const onSubmit = () => {
+  if(content.password !== content.password2) {
+
+    window.alert('As senhas nao conferem')
+
+  } else {
+    const data = {
+      email: content.email,
+      password: content.password,
+      remember: content.remember,
+    }
+
+    api.user.create(data)
+  }
 }
 </script>
 
@@ -23,7 +48,7 @@ const toggleRemember = () => {
           id="email"
           v-model="content.email"
           placeholder="Email"
-        />
+          />
       </div>
       <div class="mini-form">
         <label for="password"></label>
@@ -44,7 +69,7 @@ const toggleRemember = () => {
         />
       </div>
       <div class="mini-form">
-        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="remember"/>
+        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="content.remember"/>
       </div>
       <button type="submit"><p>Criar conta</p></button>
       <RouterLink to="/login">Já possuo uma conta</RouterLink>
@@ -171,3 +196,4 @@ const toggleRemember = () => {
   }
 }
 </style>
+@/stores/Api@/stores/api
