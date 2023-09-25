@@ -46,6 +46,21 @@ onMounted(init)
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
+  .container {
+    // padding
+    padding-bottom: 100px;
+    padding-top: 60px;
 
+    // display
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    // cores
+    background-color: transparent;
+
+    // animacao
+    transition: all 0.5s;
+  }
 }
 </style>
