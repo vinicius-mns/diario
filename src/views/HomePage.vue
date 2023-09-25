@@ -7,15 +7,28 @@ const autoLogin = useApi().user.redirectIfToken()
 
 const style = useStyle()
 
+const links = [
+  {name: 'diary local', path: '/diary/local'},
+  {name: 'register', path: '/register'},
+  {name: 'login', path: '/login'},
+]
+
+
 onMounted(() => autoLogin)
 </script>
 
 <template>
   <main class="home-page">
     <nav>
-      <RouterLink to="/diary/local"><button><h2>Entrar sem conta</h2></button></RouterLink>
-      <RouterLink to="/register"><button><h2>Crie uma conta</h2></button></RouterLink>
-      <RouterLink to="/login"><button><h2>Logar</h2></button></RouterLink>
+      <RouterLink
+        v-for="({name, path}, i) in links"
+        :key="i"
+        :to="path"
+      >
+        <button>
+          <h2>{{ name }}</h2>
+        </button>
+      </RouterLink>
     </nav>
   </main>
 </template>
