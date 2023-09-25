@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue';
 import { type ICard } from '@/interfaces'
 import { useCards } from '@/stores/cards'
 import { useApi } from '@/stores/api'
+import AddOrEditCard from '@/components/AddOrEditCard/AddOrEditCard.vue'
 
 export interface IDiaryProps {
   get: 'remote' | 'local'
@@ -45,6 +46,7 @@ onMounted(init)
       :content="content"
       :date="date"
     />
+    <AddOrEditCard />
     <a ref="lastElement"></a>
   </div>
 </template>
