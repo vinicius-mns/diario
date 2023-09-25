@@ -12,6 +12,7 @@ export interface IDiaryProps {
 const props = defineProps<IDiaryProps>()
 const cards = ref<ICard[]>()
 const cardsLocalStorage = useCards()
+const lastElement = ref<HTMLElement>()
 
 const { diary } = useApi()
 
@@ -28,6 +29,9 @@ const init = async () => {
     default: 
       return []
   }
+  
+  const autoScroll = () => lastElement.value?.scrollIntoView({behavior: 'smooth'})
+  setTimeout(autoScroll, 0)
 }
 
 onMounted(init)
@@ -41,6 +45,7 @@ onMounted(init)
       :content="content"
       :date="date"
     />
+    <a ref="lastElement"></a>
   </div>
 </template>
 
