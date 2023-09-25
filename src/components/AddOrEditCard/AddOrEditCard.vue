@@ -4,6 +4,8 @@ import { reactive } from 'vue';
 const state = reactive({
   add: false,
   text: () => state.add ? 'Adicionar' : 'Editar',
+  class: () => state.add ? 'add' : 'edit',
+  toggleText: () => state.add = !state.add,
 })
 
 
