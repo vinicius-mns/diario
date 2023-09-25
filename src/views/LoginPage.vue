@@ -1,17 +1,24 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { useStyle } from '@/stores/style';
 import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
+import { useApi } from '@/stores/api';
 
 const style = useStyle()
 
-const remember = ref(false)
+const api = useApi()
 
-const toggleRemember = () => {
-  remember.value = !remember.value
-  console.log(remember.value)
+const content = reactive({
+  email: '',
+  password: '',
+  remember: false,
+})
+
+const toggleRemember = () => content.remember = !content.remember
+
+const onSubmit = () => {
+  api.user.login(content)
 }
-
 </script>
 
 <template>
@@ -40,7 +47,7 @@ const toggleRemember = () => {
         />
       </div>
       <div class="mini-form">
-        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="remember"/>
+        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="content.remember"/>
       </div>
       <button type="submit"><p>Entrar</p></button>
       <RouterLink to="/register">Cria uma conta</RouterLink>
@@ -167,3 +174,4 @@ const toggleRemember = () => {
   }
 }
 </style>
+@/stores/Api@/stores/api
