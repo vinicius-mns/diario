@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { reactive } from 'vue';
+
+const state = reactive({
+  add: false,
+  text: () => state.add ? 'Adicionar' : 'Editar',
+})
+
+
 </script>
 
 <template>
   <button>
-    {{  }}
+    {{ state.text() }}
   </button>
 </template>
 
