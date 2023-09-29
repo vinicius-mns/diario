@@ -1,41 +1,28 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useStyle } from '@/stores/style';
 import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
-import { useApi } from '@/stores/api';
+import LoadingComponent from '@/components/loading/LoadingComponent.vue';
+import { useHandleUser } from '@/stores/handleUser'
+import { ref } from 'vue';
 
 const style = useStyle()
 
-const api = useApi()
+const pass2 = ref('')
 
-const content = reactive({
-  email: '',
-  password: '',
-  password2: '',
-  remember: false,
-})
+const { state: { user }, change, register } = useHandleUser() 
 
-const toggleRemember = () => content.remember = !content.remember
+const toggleRemember = () => change.user.remeber.toggle()
 
 const onSubmit = () => {
-  if(content.password !== content.password2) {
-
-    window.alert('As senhas nao conferem')
-
-  } else {
-    const data = {
-      email: content.email,
-      password: content.password,
-      remember: content.remember,
-    }
-
-    api.user.create(data)
-  }
+  pass2.value === user.password
+    ? register()
+    : window.alert('senhas nao conferem')
 }
 </script>
 
 <template>
   <main class="register-container">
+    <LoadingComponent />
     <form @submit.prevent="onSubmit" class="form">
       <div class="title">
         <h1>Crie sua conta</h1>
@@ -46,7 +33,7 @@ const onSubmit = () => {
         <input
           type="text"
           id="email"
-          v-model="content.email"
+          v-model="user.email"
           placeholder="Email"
           />
       </div>
@@ -55,7 +42,7 @@ const onSubmit = () => {
         <input
           type="password"
           id="password"
-          v-model="content.password"
+          v-model="user.password"
           placeholder="Senha"
         />
       </div>
@@ -64,12 +51,12 @@ const onSubmit = () => {
         <input
           type="password"
           id="password2"
-          v-model="content.password2"
+          v-model="pass2"
           placeholder="Repetir senha"
         />
       </div>
       <div class="mini-form">
-        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="content.remember"/>
+        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="user.remember"/>
       </div>
       <button type="submit"><p>Criar conta</p></button>
       <RouterLink to="/login">Já possuo uma conta</RouterLink>
@@ -196,4 +183,4 @@ const onSubmit = () => {
   }
 }
 </style>
-@/stores/Api@/stores/api
+@/stores/Api@/stores/api@/stores/handleCards/api@/stores/style/style
