@@ -1,28 +1,21 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
 import { useStyle } from '@/stores/style';
 import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
-import { useApi } from '@/stores/api';
+import { useHandleUser } from '@/stores/handleUser';
+import LoadingComponent from '@/components/loading/LoadingComponent.vue';
 
 const style = useStyle()
 
-const api = useApi()
+const { state: { user }, change, login } = useHandleUser() 
 
-const content = reactive({
-  email: '',
-  password: '',
-  remember: false,
-})
+const toggleRemember = () => change.user.remeber.toggle()
 
-const toggleRemember = () => content.remember = !content.remember
-
-const onSubmit = () => {
-  api.user.login(content)
-}
+const onSubmit = () => login()
 </script>
 
 <template>
   <main class="login-container">
+    <LoadingComponent />
     <form @submit.prevent="onSubmit" class="form">
       <div class="title">
         <h1>Entre na sua conta</h1>
@@ -33,7 +26,7 @@ const onSubmit = () => {
         <input
           type="text"
           id="email"
-          v-model="content.email"
+          v-model="user.email"
           placeholder="Email"
         />
       </div>
@@ -42,12 +35,12 @@ const onSubmit = () => {
         <input
           type="password"
           id="password"
-          v-model="content.password"
+          v-model="user.password"
           placeholder="Senha"
         />
       </div>
       <div class="mini-form">
-        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="content.remember"/>
+        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="user.remember"/>
       </div>
       <button type="submit"><p>Entrar</p></button>
       <RouterLink to="/register">Cria uma conta</RouterLink>
@@ -174,4 +167,4 @@ const onSubmit = () => {
   }
 }
 </style>
-@/stores/Api@/stores/api
+@/stores/Api@/stores/api@/stores/handleCards/api@/stores/style/style
