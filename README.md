@@ -50,3 +50,10 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+---
+## notas:
+- As datas dependem da maquina do usuario, um exploid pode ser usado alterar a tada localmente
+
+## futuros
+- capturar a data atravez do ip
