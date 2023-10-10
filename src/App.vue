@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import { useStyle } from './stores/style';
+import { useStore } from '@/stores'
 
-const style = useStyle()
+const store = useStore()
+const style = store.use.local.style()
 </script>
 
 <template>
