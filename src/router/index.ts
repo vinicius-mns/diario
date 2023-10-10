@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import DiaryPage from '@/views/DiaryPage.vue'
-import DiaryPageId from '@/views/DiaryPageId.vue'
 import NotFound from '@/views/NotFound.vue'
 import HomePage from '@/views/HomePage.vue'
 import Register from '@/views/RegisterPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
-import ToolsPage from '@/views/ToolsPage.vue'
+import DiaryCards from '@/views/DiaryCards.vue'
+import DiaryCard_ID from '@/views/DiaryCard_ID.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -22,15 +22,27 @@ const router = createRouter({
       children: [
         {
           path: 'remote',
-          name: 'remote',
-          component: DiaryPage,
+          name: 'remote cards',
+          component: DiaryCards,
           props: { get: 'remote' }
         },
         {
           path: 'local',
-          name: 'local',
-          component: DiaryPage,
+          name: 'local cards',
+          component: DiaryCards,
           props: { get: 'local' }
+        },
+        {
+          path:'local/:id',
+          name: 'local card', 
+          component: DiaryCard_ID,
+          props: { get: 'local' }
+        },
+        {
+          path:'remote/:id',
+          name: 'remote card', 
+          component: DiaryCard_ID,
+          props: { get: 'remote' }
         },
         {
           path: '',
@@ -38,11 +50,6 @@ const router = createRouter({
           redirect: '/notFound'
         }
       ]
-    },
-    {
-      path: '/diary/:id',
-      name: 'day',
-      component: DiaryPageId,
     },
     {
       path: '/notFound',
