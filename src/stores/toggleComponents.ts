@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 const toggleComponents = 'toggleComponents'
 export const useToggleComponents = defineStore(toggleComponents, () => {
 
-  const previewText = ref(false)
-  const togglePreviewText = () => previewText.value = !previewText.value
+  const textEditor = reactive({
+    value: false,
+    toggle: () => textEditor.value = !textEditor.value
+  })
 
   const configComponent = ref(false)
   const toggleConfigComponent = () => configComponent.value = !configComponent.value
@@ -16,8 +18,7 @@ export const useToggleComponents = defineStore(toggleComponents, () => {
   }
 
   return {
-    previewText,
-    togglePreviewText,
+    textEditor,
     configComponent,
     toggleConfigComponent,
     globalLoading,
