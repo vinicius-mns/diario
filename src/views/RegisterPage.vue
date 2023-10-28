@@ -1,28 +1,16 @@
 <script setup lang="ts">
-import { useStyle } from '@/stores/style';
-import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
-import LoadingComponent from '@/components/loading/LoadingComponent.vue';
-import { useHandleUser } from '@/stores/handleUser'
-import { ref } from 'vue';
+import SwitchButton from '@/components/switchbutton/SwitchButton.vue'
+import { useStore } from '@/stores'
 
-const style = useStyle()
+const store = useStore()
+const style = store.use.local.style()
+const user = store.use.remote.user()
 
-const pass2 = ref('')
-
-const { state: { user }, change, register } = useHandleUser() 
-
-const toggleRemember = () => change.user.remeber.toggle()
-
-const onSubmit = () => {
-  pass2.value === user.password
-    ? register()
-    : window.alert('senhas nao conferem')
-}
+const onSubmit = () => user.register()
 </script>
 
 <template>
   <main class="register-container">
-    <LoadingComponent />
     <form @submit.prevent="onSubmit" class="form">
       <div class="title">
         <h1>Crie sua conta</h1>
@@ -33,7 +21,7 @@ const onSubmit = () => {
         <input
           type="text"
           id="email"
-          v-model="user.email"
+          v-model="user.state.user.email"
           placeholder="Email"
           />
       </div>
@@ -42,7 +30,7 @@ const onSubmit = () => {
         <input
           type="password"
           id="password"
-          v-model="user.password"
+          v-model="user.state.user.password"
           placeholder="Senha"
         />
       </div>
@@ -51,12 +39,15 @@ const onSubmit = () => {
         <input
           type="password"
           id="password2"
-          v-model="pass2"
+          v-model="user.state.user.password2"
           placeholder="Repetir senha"
         />
       </div>
       <div class="mini-form">
-        <SwitchButton title="Lembrar de mim" :togglebutton="toggleRemember" :state="user.remember"/>
+        <SwitchButton title="Lembrar de mim"
+          :togglebutton="user.state.user.remember.toggle"
+          :state="user.state.user.remember.value"
+        />
       </div>
       <button type="submit"><p>Criar conta</p></button>
       <RouterLink to="/login">Já possuo uma conta</RouterLink>
@@ -183,4 +174,4 @@ const onSubmit = () => {
   }
 }
 </style>
-@/stores/Api@/stores/api@/stores/handleCards/api@/stores/style/style
+@/stores/Api@/stores/api@/stores/handleCards/api@/stores/style/style@/stores/local/style
