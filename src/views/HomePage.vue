@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useApi } from '@/stores/api'
-import { useStyle } from '@/stores/style';
+import { useStore } from '@/stores'
 
-const autoLogin = useApi().user.redirectIfToken()
-
-const style = useStyle()
+const store = useStore()
+const style = store.use.local.style()
 
 const links = [
   {name: 'diary local', path: '/diary/local'},
   {name: 'register', path: '/register'},
   {name: 'login', path: '/login'},
 ]
-
-
-onMounted(() => autoLogin)
 </script>
 
 <template>
@@ -75,3 +69,4 @@ onMounted(() => autoLogin)
   }
 }
 </style>
+@/stores/handleCards/api@/stores/style/style@/stores/local/style
