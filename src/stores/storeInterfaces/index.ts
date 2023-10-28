@@ -16,8 +16,9 @@ interface IState {
 }
 
 export interface ICardStore {
-  state: IState,
+  state: IState
   createOrUpdateCard: () => void
+  getOne: (id: string) => Promise<ICard> | ICard
   init: () => Promise<void>
 }
 
