@@ -1,73 +1,90 @@
 <script setup lang="ts">
-import type { IDay } from '@/interfaces'
-import { useStyle } from '@/stores/style';
+import type { ICard } from '@/interfaces'
 import { HandleDate } from '@/utils'
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from '@/stores'
+
+const store = useStore()
+const style = store.use.local.style()
 
 import MarkdownView from '../markdownView/MarkdownView.vue';
 
-const props = defineProps<IDay>()
+const props = defineProps<ICard>()
 
-const style = useStyle()
 const router = useRouter()
+const route = useRoute()
 
-const openCard = () => router.push(`/diary/${ props.date.getTime() }`)
+const openCard = () => router.push(`${ route.fullPath }/${ props.date }`)
+const parseDate = new Date(props.date)
 </script>
 
 <template>
-  <button class="day-card" @click="openCard">
-    <div class="header">
+  <div class="day-card">
+    <header class="header">
       <p v-if="style.value.dateOnCard">{{`
-        ${ HandleDate.changeToBrazilianDate(props.date) }
-        - ${ HandleDate.getWeek(props.date) }
+        ${ HandleDate.changeToBrazilianDate(parseDate) }
+        - ${ HandleDate.getWeek(parseDate) }
       `}}</p>
+    </header>
+    <div class="content">
+      <button @click="openCard">
+        <MarkdownView :content="props.content" />
+      </button>
     </div>
-    <MarkdownView :content="props.content" />
-  </button>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @media screen and (max-width: 700px) {
   .day-card {
-    // estilo
-    border-radius: v-bind('style.value.borderRadius');
-    background-color: v-bind('style.value.baseColor');
-    box-shadow: v-bind('style.value.boxShadow');
-    color: v-bind('style.value.textColor');
-
     // medidas
-    width: 96%;
+    width: 92%;
     max-height: 68vh;
-    margin-top: 15px;
+    margin-top: 28px;
     font-size: 1rem;
+    
+    
+    & .content {
+      //medidas
+      width: 100%;
 
-    // diaplay
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
+      & button {
+        // estilo
+        border-radius: v-bind('style.value.borderRadius');
+        background-color: v-bind('style.value.baseColor');
+        box-shadow: v-bind('style.value.boxShadow');
+
+        border: none;
   
-    // impedir o encolhimento por estar dentro de um container display flex
-    flex-shrink: 0;
-
-    // botao valores
-    border: none;
-    cursor: pointer;
-
-    // animacao
-    transition: all 0.5s;
+        // medidas
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        max-height: 500px;
+        overflow: hidden;
+        
+        // display
+        display: flex;
+        flex-direction: column;
+      }
+    }
 
     & .header {
       // medidas
-      width: 100%;
+      width: 50%;
+      margin-bottom: 8px;
 
       // display
       display: flex;
       justify-content: center;
-    }
 
-    & p {
-      color: v-bind('style.value.especialColor');
+      & p {
+        color: v-bind('style.value.textColor');
+        opacity: 50%;
+        font-size: 13px;
+        margin: 0;
+        padding: 0;
+      }
     }
   }
 }
