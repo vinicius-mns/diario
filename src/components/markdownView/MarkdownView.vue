@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { useStyle } from '@/stores/style';
 import { marked } from 'marked'
+import { useStore } from '@/stores'
+
+const store = useStore()
+const style = store.use.local.style()
 
 marked.setOptions({ breaks: true, mangle: false, headerIds: false })
 
 const props = defineProps<{ content: string }>()
 
-const style = useStyle()
 </script>
 
 <template>
@@ -44,4 +46,4 @@ const style = useStyle()
     transition: all 0.5s
   }
 }
-</style>
+</style>@/stores/style/style@/stores/local/style
