@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { useStyle } from '@/stores/style'
-import { useToggleComponents } from '@/stores/toggleComponents'
 import CloseButton from '@/components/closeButton/CloseButton.vue';
-import SwitchButton from '../switchbutton/SwitchButton.vue';
+import SwitchButton from '@/components/switchbutton/SwitchButton.vue';
+import { useStore } from '@/stores'
 
-const style = useStyle()
-const toggle = useToggleComponents()
+const store = useStore()
+const style = store.use.local.style()
+const user = store.use.remote.user()
+
+const { state: { configComponent: confCom } } = store.use.widget.topbar()
 
 const setEspecialColor = (event: Event) => {
   const color = (event.target as HTMLInputElement).value
   style.changeEspecialColor(color)
 }
+
+const logout = () => user.logout()
+
 </script>
 
 <template>
-  <div class="blur" v-if="toggle.configComponent">
+  <div class="blur" v-if="confCom.show">
     <div class="config-component">
-      <CloseButton :close="toggle.toggleConfigComponent" />
+      <CloseButton :close="confCom.toggleShow" />
 
       <hr>
 
@@ -24,7 +29,7 @@ const setEspecialColor = (event: Event) => {
         <div class="option">
           <SwitchButton
             title="Modo escuro"
-            :togglebutton="style.toggleTeme"
+            :togglebutton="style.toggleDarkMode"
             :state="style.value.darkMode"
           />
         </div>
@@ -50,6 +55,12 @@ const setEspecialColor = (event: Event) => {
           />
         </div>
       </div>
+
+      <div class="options-container">
+        <div class="option">
+          <button @click="logout">Sair</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -59,7 +70,6 @@ const setEspecialColor = (event: Event) => {
   .blur {
     // posicionamento
     position: fixed;
-    z-index: 1;
 
     // tamanhos
     width: 100%;
@@ -162,4 +172,4 @@ const setEspecialColor = (event: Event) => {
     }
   }
 }
-</style>
+</style>@/stores/handleCards/api@/stores/style/style@/stores/local/style@/stores/handleCard/handleConfig
