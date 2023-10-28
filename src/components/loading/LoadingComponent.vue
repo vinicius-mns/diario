@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useStyle } from '@/stores/style';
 import { useToggleComponents } from '@/stores/toggleComponents';
+import { useStore } from '@/stores'
+
+const store = useStore()
+const style = store.use.local.style()
 
 const toggleComponent = useToggleComponents()
-
-const style = useStyle()
 </script>
 
 <template>
@@ -30,7 +31,7 @@ const style = useStyle()
     background-color: rgba(255, 255, 255, 0.5);
 
     // posicionamento
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 
@@ -108,10 +109,10 @@ const style = useStyle()
     }
     50% {
       transform-style: preserve-3d;
-      transform: perspective(1200px) rotateX(60deg);
+      transform: perspective(1200px) rotateX(180deg);
     }
     100% {
       transform: rotate(360deg);
     }
   }
-</style>
+</style>@/stores/style/style@/stores/local/style
