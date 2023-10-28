@@ -6,6 +6,7 @@ import Register from '@/views/RegisterPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import DiaryCards from '@/views/DiaryCards.vue'
 import DiaryCard_ID from '@/views/DiaryCard_ID.vue'
+import CoverPage from '@/views/CoverPage.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage
+    },
+    {
+      path: '/cover',
+      name: 'cover',
+      component: CoverPage
     },
     {
       path: '/diary',
