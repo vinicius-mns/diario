@@ -1,0 +1,71 @@
+<script setup lang="ts">
+import ConfigComponent from '@/components/configComponent/ConfigComponent.vue';
+import { useStore } from '@/stores'
+
+const store = useStore()
+const style = store.use.local.style()
+const { state: { configComponent } } = store.use.widget.topbar()
+
+const c = () => {
+  configComponent.toggleShow()
+}
+
+</script>
+
+<template>
+  <div class="top-bar-container">
+    <ConfigComponent />
+    <header class="top-bar">
+      <button @click="c" class="logo">D I A R I O</button>
+    </header>
+  </div>
+</template>
+
+<style scoped lang="scss">
+@media screen and (max-width: 700px) {
+  .top-bar-container {
+    // posicionamento
+    position: fixed;
+    top: 0;
+
+    // tamanho
+    height: 57px;
+    width: 100%;
+  }
+
+  .top-bar {
+    // display
+    display: flex;
+    align-items: center;
+
+    // tamanho
+    height: 57px;
+    width: 100%;
+    
+    // estilo
+    background-color: v-bind('style.value.pageColor');
+
+    // animacao
+    transition: all 0.5s;
+
+    .logo {
+      // medidas
+      height: 100%;
+      aspect-ratio: 4/1;
+      
+      // display
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // estilo
+      color: v-bind('style.value.especialColor');
+      
+      // button estilo  
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+}
+</style>
