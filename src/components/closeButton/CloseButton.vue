@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { useStyle } from '@/stores/style'
+import { useStore } from '@/stores'
+
+const store = useStore()
+const style = store.use.local.style()
 
 interface Iclose {
   close: () => void
@@ -7,7 +10,6 @@ interface Iclose {
 
 const props = defineProps<Iclose>()
 
-const style = useStyle()
 </script>
 
 <template>
@@ -50,4 +52,4 @@ const style = useStyle()
     &::before { transform: rotate(-45deg) }
   }
 }
-</style>
+</style>@/stores/style/style@/stores/local/style
