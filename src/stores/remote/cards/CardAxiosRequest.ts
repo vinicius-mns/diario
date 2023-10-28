@@ -23,6 +23,7 @@ class CardAxios {
     return {
       create: `${diary}/card/create`,
       read: `${diary}/card/read`,
+      readOne: (id: string) => `${diary}/card/read/${id}`,
       update: `${diary}/card/update`,
     } 
   }
@@ -58,6 +59,23 @@ class CardAxios {
         return ok
           ? this._response(data, true)
           : this._response(data, false)
+      })
+      .catch((error) => {
+        return this._response(error, false)
+      })
+  }
+
+  public readOne = async (token: string, id: string) => {
+    const path = this._path().readOne(id)
+    const headers = { 'Authorization': token }
+
+    return this._axios.get(path, { headers })
+      .then(({ status, data }) => {
+        const ok = status === httpsStatus.ok
+
+        return ok
+          ? this._response(data.message.cards[0], true)
+          : this._response(data.message, false)
       })
       .catch((error) => {
         return this._response(error, false)
