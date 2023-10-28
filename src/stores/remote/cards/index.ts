@@ -4,12 +4,14 @@ import { reactive } from "vue"
 import { cardAxios } from "./CardAxiosRequest"
 import {  token_localStorage } from "@/myLocalStorage"
 import type { ICardStore } from "@/stores/storeInterfaces"
+import { useToggleComponents } from "@/stores/toggleComponents"
 
 
 export const useRemoteCards = defineStore('remoteCards', (): ICardStore => {
 
   const cardRemote = cardAxios()
   const tokenLocalStorage = token_localStorage
+  const globalLoading = (state: boolean) =>  useToggleComponents().toggleGlobalLoading(state)
 
   const state = reactive({
     cards: {
@@ -123,6 +125,21 @@ export const useRemoteCards = defineStore('remoteCards', (): ICardStore => {
     if(dateIs.sameDay()) await _updateCard()
   }
 
+  const getOne = async (id: string) => {
+    const token = tokenLocalStorage.read
+
+    globalLoading(true)
+
+    return cardRemote.readOne(token, id)
+      .then((content) => {
+        globalLoading(false)
+        
+        return content.sucess
+          ? content.data as unknown as ICard
+          : { content: 'error', date: 0 }
+      })
+  }
+
   const init = async () => {
     await _atualizeAll()
   }
@@ -131,5 +148,6 @@ export const useRemoteCards = defineStore('remoteCards', (): ICardStore => {
     state,
     init,
     createOrUpdateCard,
+    getOne,
   }
 })
