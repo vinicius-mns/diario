@@ -119,6 +119,16 @@ export const useLocalCards = defineStore('localCards', (): ICardStore => {
     if(dateIs.sameDay()) await _updateCard()
   }
 
+  const getOne = (id: string) => {
+    const uuid = Number(id)
+
+    const card = state.cards.value.find(({ date }) => date === uuid)
+  
+    return card
+      ? card
+      : { content: 'not found', date: 0 }
+  }
+
   const init = async () => {
     _atualizeAll()
   }
@@ -127,5 +137,6 @@ export const useLocalCards = defineStore('localCards', (): ICardStore => {
     state,
     init,
     createOrUpdateCard,
+    getOne,
   }
 })
