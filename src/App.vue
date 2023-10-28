@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import LoadingComponent from '@/components/loading/LoadingComponent.vue';
+import { RouterView } from 'vue-router'
 import { useStore } from '@/stores'
 
 const store = useStore()
@@ -9,6 +10,7 @@ const style = store.use.local.style()
 <template>
   <div class="app">
     <RouterView />
+    <LoadingComponent />
   </div>
 </template>
 
