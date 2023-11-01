@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DayCard from '@/components/dayCard/DayCard.vue'
-import AddOrEditCard from '@/components/AddOrEditCard/AddOrEditCard.vue'
+import CoverW from '@/components/widgets/cover/CoverW.vue';
+import TextEditorVue from '@/components/widgets/textEditor/TextEditor.vue';
 import { useStore } from '@/stores'
 import { onMounted } from 'vue';
 
@@ -12,6 +13,9 @@ const props = defineProps<IDiaryProps>()
 
 const store = useStore()
 
+const style = store.use.local.style()
+const textEditor = store.use.widget.textEditor()
+
 const { state, init } = store.use[props.get].cards()
 
 onMounted(async () => {
@@ -21,16 +25,17 @@ onMounted(async () => {
 
 <template>
   <div class="container">
+    <CoverW />
     <DayCard 
       v-for="({content, date}, i) in state.cards.value"
       :key="i"
       :content="content"
       :date="date"
     />
-    <AddOrEditCard
-      :get="props.get"
-      :typeText="state.typeEditor.value"
-    />
+    <TextEditorVue />
+    <button class="add-card" @click="textEditor.set.toggleShow">
+      Adicionar
+    </button>
   </div>
 </template>
 
@@ -44,6 +49,22 @@ onMounted(async () => {
     
     // cores
     background-color: transparent;
+
+    & .add-card {
+      // medidas
+      width: 90%;
+      height: 45px;
+
+      // posicionamento
+      margin-top: 40px;
+
+      // estilo
+      background-color: v-bind('style.value.baseColor');
+      color: v-bind('style.value.textColor');
+      border: v-bind('style.value.textColor') dashed 1px;
+      border-radius: v-bind('style.value.borderRadius');
+      opacity: 50%;
+    }
 
     // animacao
     transition: all 0.5s;
