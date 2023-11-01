@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import DiaryPage from '@/views/DiaryPage.vue'
 import NotFound from '@/views/NotFound.vue'
-import HomePage from '@/views/HomePage.vue'
 import Register from '@/views/RegisterPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import DiaryCards from '@/views/DiaryCards.vue'
