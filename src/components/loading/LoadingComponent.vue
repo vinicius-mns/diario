@@ -115,4 +115,4 @@ const toggleComponent = useToggleComponents()
       transform: rotate(360deg);
     }
   }
-</style>@/stores/style/style@/stores/local/style
+</style>
