@@ -3,6 +3,7 @@ import { defineStore } from "pinia"
 import { useLocalCards, useStyle } from "./local"
 import { useRemoteCards, useRemoteUser } from "./remote"
 import { useTopbarWidget } from "./widgets"
+import { useTextEditorWidget } from "./widgets/textEditor"
 
 export const useStore = defineStore('useStore', () => {
 
@@ -21,6 +22,7 @@ export const useStore = defineStore('useStore', () => {
     },
     widget: {
       topbar: useTopbarWidget,
+      textEditor: useTextEditorWidget,
     }
   }
 
