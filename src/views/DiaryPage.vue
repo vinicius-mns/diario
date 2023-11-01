@@ -15,7 +15,7 @@
 @media screen and (max-width: 700px) {
   .routes {
     padding-top: 57px;
-    padding-bottom: 20px;
+    padding-bottom: 200px;
   }
 }
 </style>
